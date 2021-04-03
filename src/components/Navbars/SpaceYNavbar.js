@@ -120,7 +120,7 @@ class SpaceYNavbar extends React.Component {
                         <Media
                           className="d-flex align-items-center"
                           // href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/overview?ref=adsr-navbar"
-                          href = "http://localhost:3000/aboard"
+                          href = "#/aboard"
                           // target="_blank"
                         >
                           <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
@@ -137,7 +137,8 @@ class SpaceYNavbar extends React.Component {
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          href="http://localhost:3000/share"
+                          // href="http://localhost:3000/share"
+                          href="#/share"
                         >
                           <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
                             <i className="ni ni-palette" />
@@ -154,7 +155,8 @@ class SpaceYNavbar extends React.Component {
 
                         <Media
                           className="d-flex align-items-center"
-                          href="http://localhost:3000/mytickets"
+                          // href="http://localhost:3000/mytickets"
+                          href="#mytickets"
                           // target="_blank"
                         >
 
