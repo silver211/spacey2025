@@ -1,5 +1,6 @@
 import React from 'react';
 import Web3 from 'web3';
+import {ethers} from "ethers";
 
 import {
   Button,
@@ -27,7 +28,8 @@ constructor(prop){
     this.state={ether:"0",
     spay:"0",
     account:"",
-    smt:"0"
+    smt:"0",
+    allowance:0
 }}
 
  ethrequest(){
@@ -35,45 +37,70 @@ constructor(prop){
     this.ethereum.request({ method: 'eth_requestAccounts' });
  }
 
+componentDidUpdate(nextState,nextProps){
+  return this.state!=nextState
+}
 
   async getAccountInfo(){
-      var address 
-      await window.web3.eth.getAccounts().then(e=>{address = e[0]})
-      // console.log(address)
-      var balance
-      await window.web3.eth.getBalance(address).then(e=>{balance = window.web3.utils.fromWei(e, "ether")})
-      // console.log(balance)
-      var spayInst = new window.web3.eth.Contract(SPAYtestabi,SPAYtestaddr);
-      var spay
-      await spayInst.methods.balanceOf(address).call().then(e=>{
-        spay = window.web3.utils.fromWei(e,"ether")
-      })
-      // console.log(spay)
+      const {ethereum,web3} = window
+      const provider= new ethers.providers.Web3Provider(ethereum)
+      
+      var spayInst = new ethers.Contract(SPAYtestaddr,SPAYtestabi,provider);
+      var smtInst = new ethers.Contract(SMTtestaddr,SMTtestabi,provider);
+      // var smtInst = new window.web3.eth.Contract(SMTtestabi,SMTtestaddr)
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (!accounts){
+        return
+      }
+      // await window.web3.eth.getAccounts().then(e=>{new_account=e[0]})
+      // console.log(new_account,typeof(new_account))
+      const balance = await ethereum.request({
+        method:'eth_getBalance',
+        params:[
+          accounts[0],'latest'
+        ]
+    })
+        // console.log(spayInst)
+      const spay = await spayInst.balanceOf(accounts[0]).then(ethers.utils.formatEther)
+      const smt = await smtInst.balanceOf(accounts[0]).then(e=>{return    e.toNumber()})
+      const allowance = await spayInst.allowance(accounts[0], SMTtestaddr).then(ethers.utils.formatEther)
+      
+      // await spayInst.methods.balanceOf(new_account).call().then(e=>{
+      //   new_spay = window.web3.utils.fromWei(e,"ether")
+      // })
+      // // console.log(new_spay)
 
-      var smtInst = new window.web3.eth.Contract(SMTtestabi,SMTtestaddr);
-      var smt
-      await smtInst.methods.balanceOf(address).call().then(e=>{
-        smt = e
-      })
-      // console.log(smt)
+      // await smtInst.methods.balanceOf(new_account).call().then(e=>{
+      //   new_smt = e
+      // })
+      // console.log(new_smt)
 
       this.setState({
-          ether:balance ,
-          account:address,
+          ether:ethers.utils.formatEther(balance) ,
+          account:accounts[0],
           spay:spay,
-          smt:smt
+          smt:smt,
+          allowance:allowance
       })
   }
 
   componentDidMount(){
-    if (typeof window.ethereum !== 'undefined') {
+    const {ethereum} = window
+    if (typeof ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
       }
     // console.log(window.ethereum)
-    if (window.ethereum){
-        window.web3 = new Web3(window.ethereum)
-        window.ethereum.enable();
+    if (ethereum){
+        
+        // window.ethereum.enable().then(e=>{console.log(e);this.setState({
+        //   account:e[0]
+        // })});
+        // window.web3 = new Web3(window.ethereum)
+        ethereum.enable();
         this.getAccountInfo();
+
+        // window.ethereum.request({ method: 'eth_requestAccounts' });
+
 
     }
     
@@ -87,7 +114,9 @@ constructor(prop){
  * }
  */
     render(){
-      const {smt,spay,account,ether} = this.state
+      const {smt,spay,account,ether,allowance} = this.state
+      
+
 
   return (
     <section className="section section-shaped section-lg">
@@ -102,15 +131,22 @@ constructor(prop){
                       </div>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5 text-center">
-                      <h3>My Account</h3>
-                      <p>{account}</p>
-                      <h3>My Balance</h3>
-                      <p>{ether} ETH</p>
-                      <h3>My SPAY</h3>
-                      <p>{spay} SPAY</p>
-                      <h3>My SMT</h3>
-                      <p>{smt} SMT</p>                     
-                        <Transaction />
+                    {account?
+                     (<> <h3>My Account:{account}</h3>
+                      {/* <p>{account}</p> */}
+                      <h3>My ETH:{ether} ETH</h3>
+                      {/* <p>{ether} ETH</p> */}
+                      <h3>My SPAY:{spay} SPAY</h3>
+                      {/* <p>{spay} SPAY</p> */}
+                      <h3>My Spay Allowance:{allowance} SPAY</h3>
+
+                      <h3>My SMT:{smt} SMT</h3>
+
+                      
+                      {/* <p>{smt} SMT</p>                      */}
+                        <Transaction /> </>):(<div className="text-center text-muted mb-4">
+                        <p className="h3 text-center">Please connect MetaMask<br/>If already connected,please refresh</p>
+                      </div>  )}
                     </CardBody>
                   </Card>
                   </Col>

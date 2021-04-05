@@ -35,6 +35,8 @@ import Menus from "./IndexSections/Menus.js";
 import LandingCg from "./CustomSections/LandingCg.js";
 import WhatIs from "./CustomSections/WhatIs.js";
 import Buildings from "./CustomSections/Buildings.js";
+import Alien from "./CustomSections/Alien.js";
+import Defend from "./CustomSections/Defend.js";
 import Connection from "components/ETH/Connection.js";
 import Transaction from "components/ETH/Transaction.js";
 
@@ -58,11 +60,11 @@ class SpaceY extends React.Component {
             {/* <Connection />
             <Transaction /> */}
           <Hero />
-        {/* <WhatIs />
-        <LandingCg />
+        <WhatIs />
         <Buildings />
-        <Buildings />
-        <Buildings />
+        <Alien />
+        <Defend />
+        {/* <Buildings />
         <Buildings /> */}
 
 

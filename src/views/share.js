@@ -105,6 +105,7 @@ class Share extends React.Component {
       const ratio = 0.4
       const width = width_o*ratio
       const height = height_o*ratio
+      const name = firstname+" "+lastname
     return (
       <div className="bg-dark">
         <SpaceYNavbar />
@@ -121,11 +122,12 @@ class Share extends React.Component {
                       <div className="text-muted text-center mb-3">
                         <small>Mission to Mars</small>
                       </div>
+                      
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5">
-                      {/* <div className="text-center text-muted mb-4">
-                        <small>Or sign in with credentials</small>
-                      </div>     */}
+                    <div className="text-center text-muted mb-4">
+                        <small>Get a free ticket now!</small>
+                      </div>  
                       <Form role="form" onSubmit = {this.handleSubmit}>
                         <FormGroup className="mb-3">
                           <InputGroup className="input-group-alternative">
@@ -167,10 +169,10 @@ class Share extends React.Component {
                             Get Ticket!
                           </Button> */}
                           <div className="text-center">
-                          
-                          <TicketModals name={firstname+" "+lastname}
+                            {(firstname || lastname)?<TicketModals name={firstname+" "+lastname}
                            labeltext="Free Ticket!"
-                           imgsrc={freeticket}/>
+                           imgsrc={freeticket}/>:<></>}
+                          
                         </div>
                         </div>
                       </Form>

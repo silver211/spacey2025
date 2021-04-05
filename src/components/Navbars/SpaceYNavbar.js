@@ -39,6 +39,8 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
+import Connection from "./Connection.js"
+
 class SpaceYNavbar extends React.Component {
   componentDidMount() {
     let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -74,7 +76,7 @@ class SpaceYNavbar extends React.Component {
             expand="lg"
             id="navbar-main"
           >
-            <Container>
+            {/* <Container> */}
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
                 <img
                   alt="..."
@@ -109,77 +111,60 @@ class SpaceYNavbar extends React.Component {
                     </Col>
                   </Row>
                 </div>
-                <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                  <UncontrolledDropdown nav>
-                    <DropdownToggle nav>
-                      <i className="ni ni-ui-04 d-lg-none mr-1" />
-                      <span className="nav-link-inner--text">Links</span>
-                    </DropdownToggle>
-                    <DropdownMenu className="dropdown-menu-xl">
-                      <div className="dropdown-menu-inner">
-                        <Media
-                          className="d-flex align-items-center"
-                          // href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/overview?ref=adsr-navbar"
-                          href = "#/aboard"
-                          // target="_blank"
-                        >
-                          <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                            <i className="ni ni-spaceship" />
-                          </div>
-                          <Media body className="ml-3">
-                            <h6 className="heading text-primary mb-md-1">
-                              Aboard
-                            </h6>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              Let me aboard! Buy a ticket to start mars mission.
-                            </p>
-                          </Media>
-                        </Media>
-                        <Media
-                          className="d-flex align-items-center"
-                          // href="http://localhost:3000/share"
-                          href="#/share"
-                        >
-                          <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
-                            <i className="ni ni-palette" />
-                          </div>
-                          <Media body className="ml-3">
-                            <h6 className="heading text-primary mb-md-1">
-                              Free
-                            </h6>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              Get free ticket.
-                            </p>
-                          </Media>
-                        </Media>
+                {/* <Nav className="navbar-nav-hover align-items-lg-center" navbar>
+                <i className="ni ni-ui-04 d-lg-none mr-1" />
+                  <span  className="nav-link-inner--text">Aboard</span>
+                </Nav> */}
 
-                        <Media
-                          className="d-flex align-items-center"
-                          // href="http://localhost:3000/mytickets"
-                          href="#mytickets"
-                          // target="_blank"
-                        >
+<Nav className="align-items-lg-center" navbar>
+<NavItem>
+                    <NavLink
+                      href="#/"  
+                    >
+                      Introduction
 
-                          <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                            <i className="ni ni-ui-04" />
-                          </div>
+                    </NavLink>
+                    
+                  </NavItem> 
 
-                          <Media body className="ml-3">
-                            <h5 className="heading text-warning mb-md-1">
-                              Sale
-                            </h5>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              Review my owned tickets.
-                            </p>
-                          </Media>
 
-                        </Media>
 
-                          
-                      </div>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  <NavItem>
+                    <NavLink
+                      href="#/aboard"  
+                    >
+                      Aboard
+
+                    </NavLink>
+                    
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      href="#/share"  
+                    >
+                      Free Ticket
+
+                    </NavLink>
+                    
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      href="#/mytickets"  
+                    >
+                      My Ticket
+
+                    </NavLink>
+                    
+                  </NavItem>
+                  
+                  
+                  
                 </Nav>
+
+
+
+
+
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
                   <NavItem>
                     <NavLink
@@ -229,10 +214,15 @@ class SpaceYNavbar extends React.Component {
                       Mail Us
                     </UncontrolledTooltip>
                   </NavItem>
+                  {/* <NavItem className="d-none d-lg-block ml-lg-4">
+                    
+                                    <Connection />
+
+                  </NavItem> */}
                   
                 </Nav>
               </UncontrolledCollapse>
-            </Container>
+            {/* </Container> */}
           </Navbar>
         </header>
       </>

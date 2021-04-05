@@ -41,7 +41,7 @@ constructor(prop){
     width_o : 2560,
     height_o :1497,
     ratio : 0.4,
-    select:-1
+    select:0
 }
 this.handleChange=this.handleChange.bind(this)
 this.saveImgurl = this.saveImgurl.bind(this)
@@ -160,8 +160,13 @@ handleChange(e){
       let options=[]
       for(let idx=0;idx<smts.length;idx++){
         const smt=smts[idx]
-        options.push(<option key={smt.id} value={idx}> {smt.id} </option>)
-      }
+        
+        options.push(<option key={smt.id} value={idx}> {smt.id} </option>)}
+      
+      // if (select<0 || smts.length==0){
+      //   return <></>
+      // }
+      
       
 
   return (
@@ -179,9 +184,10 @@ handleChange(e){
                       </div>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5">
-                      {/* <div className="text-center text-muted mb-4">
-                        <small>Or sign in with credentials</small>
-                      </div>     */}
+                      <div className="text-center text-muted mb-4">
+                        <small>View your tickets!</small>
+                      </div>    
+                      {smts.length>0?(
                       <Form role="form" onSubmit = {this.handleSubmit}>
                         <FormGroup className="mb-3">
                         <Label for="exampleSelect">SMT ID</Label>
@@ -198,22 +204,26 @@ handleChange(e){
         </Input>
                           </InputGroup>
                         </FormGroup>
-                        <div className="text-center">
+                        <Row className="text-center">
                           {/* <Button
                             className="my-4"
                             color="primary"
                             type="submit"
                           >
-                            View My Ticket!
+                            View My Ticket! 
                           </Button> */}
-                          {select<0?(<></>):(<TicketModals
+                          <Col>
+                          <TicketModals
                            name={smts[select].name}
                            labeltext="My Ticket"
                            imgsrc={saleticket}
-                          />
-)}
-                        </div>
-                      </Form>
+                          /></Col>
+                          
+
+                        </Row>
+                      </Form>):( <div className="text-center text-muted mb-4">
+                        <p className="h3 text-center">Woops!<br/>You have no tickets...</p>
+                      </div>     )}
                     </CardBody>
                   </Card>
                   </Col>
