@@ -31,7 +31,7 @@ class Transaction extends React.Component{
             await spayInst.approve(SMTtestaddr,ethers.BigNumber.from(amount)).then(console.log)
         }
         else {
-        await smtInst.buySMT(hash).then(e=>{console.log(e)},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+        await smtInst.buySMT(hash).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
         }
         // console.log(from_address,to_address)
         //await spayInst.methods.transfer(to_address,new window.web3.utils.BN(amount)).send({from:from_address}).then(e=>{resp = e})
