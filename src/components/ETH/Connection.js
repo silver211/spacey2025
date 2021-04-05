@@ -144,7 +144,7 @@ componentDidUpdate(nextState,nextProps){
 
                       
                       {/* <p>{smt} SMT</p>                      */}
-                        <Transaction /> </>):(<div className="text-center text-muted mb-4">
+                        <Transaction allowance={allowance}/> </>):(<div className="text-center text-muted mb-4">
                         <p className="h3 text-center">Please connect MetaMask<br/>If already connected,please refresh</p>
                       </div>  )}
                     </CardBody>

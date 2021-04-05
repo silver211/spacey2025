@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import {ethers} from "ethers";
 
 import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr}     from "./spay_testabi.js"
+import { randomBytes } from 'ethers/lib/utils';
 
 class Transaction extends React.Component{
 
@@ -24,9 +25,14 @@ class Transaction extends React.Component{
         const amount = "2025000000000000000000"
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         // await spayInst.transfer(SMTtestabi,ethers.BigNumber.from())
-        await spayInst.approve(SMTtestaddr,ethers.BigNumber.from(amount)).then(console.log)
-        const allowance = await spayInst.allowance(accounts[0],SMTtestaddr).then(ethers.utils.formatEther)
-        await smtInst.buySMT().then(console.log)
+        const allowance = await spayInst.allowance(accounts[0],SMTtestaddr)
+        let hash = Math.random().toString()
+        if (allowance.lt(ethers.BigNumber.from(amount))){
+            await spayInst.approve(SMTtestaddr,ethers.BigNumber.from(amount)).then(console.log)
+        }
+        else {
+        await smtInst.buySMT(hash).then(e=>{console.log(e)},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+        }
         // console.log(from_address,to_address)
         //await spayInst.methods.transfer(to_address,new window.web3.utils.BN(amount)).send({from:from_address}).then(e=>{resp = e})
         // const smtInst = new window.web3.eth.Contract(SMTtestabi,SMTtestaddr);
