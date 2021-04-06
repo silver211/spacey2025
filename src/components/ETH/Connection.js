@@ -18,7 +18,13 @@ import {
   Col,
   Label
 } from "reactstrap";
-import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr}     from "./spay_testabi.js"
+import {SMTtestabi,
+  SMTtestaddr,
+  SPAYtestabi,
+  SPAYtestaddr,
+  SALEtestabi,
+  SALEtestaddr
+}     from "./spay_testabi.js"
 import Transaction from "./Transaction.js"
 class Connection extends React.Component {
 
@@ -63,7 +69,7 @@ componentDidUpdate(nextState,nextProps){
         // console.log(spayInst)
       const spay = await spayInst.balanceOf(accounts[0]).then(ethers.utils.formatEther)
       const smt = await smtInst.balanceOf(accounts[0]).then(e=>{return    e.toNumber()})
-      const allowance = await spayInst.allowance(accounts[0], SMTtestaddr).then(ethers.utils.formatEther)
+      const allowance = await spayInst.allowance(accounts[0], SALEtestaddr).then(ethers.utils.formatEther)
       
       // await spayInst.methods.balanceOf(new_account).call().then(e=>{
       //   new_spay = window.web3.utils.fromWei(e,"ether")

@@ -2,7 +2,7 @@ import React from 'react';
 import Web3 from 'web3';
 import {ethers} from "ethers";
 
-import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr}     from "./spay_testabi.js"
+import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr,SALEtestabi,SALEtestaddr}     from "./spay_testabi.js"
 import { randomBytes } from 'ethers/lib/utils';
 
 class Transaction extends React.Component{
@@ -22,16 +22,17 @@ class Transaction extends React.Component{
         const provider= new ethers.providers.Web3Provider(ethereum)
         var spayInst = new ethers.Contract(SPAYtestaddr,SPAYtestabi,provider.getSigner());
         var smtInst = new ethers.Contract(SMTtestaddr,SMTtestabi,provider.getSigner());
+        var saleInst = new ethers.Contract(SALEtestaddr,SALEtestabi,provider.getSigner());
         const amount = "2025000000000000000000"
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         // await spayInst.transfer(SMTtestabi,ethers.BigNumber.from())
-        const allowance = await spayInst.allowance(accounts[0],SMTtestaddr)
+        const allowance = await spayInst.allowance(accounts[0],SALEtestaddr)
         let hash = Math.random().toString()
         if (allowance.lt(ethers.BigNumber.from(amount))){
-            await spayInst.approve(SMTtestaddr,ethers.BigNumber.from(amount)).then(console.log)
+            await spayInst.approve(SALEtestaddr,ethers.BigNumber.from(amount)).then(console.log)
         }
         else {
-        await smtInst.buySMT(hash).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+        await saleInst.buySMT(hash).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
         }
         // console.log(from_address,to_address)
         //await spayInst.methods.transfer(to_address,new window.web3.utils.BN(amount)).send({from:from_address}).then(e=>{resp = e})
