@@ -53,7 +53,7 @@ class Landing extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        {/* <DemoNavbar /> */}
         <main ref="main">
           <div className="position-relative">
             {/* shape Hero */}
@@ -854,9 +854,9 @@ class Landing extends React.Component {
               </Row>
             </Container>
           </section>
-          <Download />
+          {/* <Download /> */}
         </main>
-        <CardsFooter />
+        {/* <CardsFooter /> */}
       </>
     );
   }

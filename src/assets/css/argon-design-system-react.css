@@ -12852,7 +12852,10 @@ textarea[resize="horizontal"] {
   background-color: #fff;
   transition: all 0.15s ease; }
   .nav-pills .nav-link:hover {
-    color: #485fe0; }
+    color: #485fe0; 
+    /* color: #9dc0c9;    */
+
+  }
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {

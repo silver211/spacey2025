@@ -18,51 +18,61 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
+import EABtn from "./EABtn.js";
 
 class Hero extends React.Component {
   render() {
     return (
       <>
-        <div className="position-relative">
-          {/* Hero for FREE version */}
-          <section className="section section-hero section-shaped ">
-            
-            {/* <Container className="shape-container d-flex align-items-center py-lg vw-100 "> */}
-              <div className="col px-0">
-                <Row className="align-items-center justify-content-center">
-                  <Col className="text-center" lg="12">
-                    <img
+      
+        <div className="position-relative" id="home">
+          
+          <section className="section section-hero  section-shaped pt-0 pb-0 " >
+          
+          <img
                       alt="..."
-                       className="img-fluid "
-                      src={require("assets/SpaceYAssets/hero/background02_2.png")
+                      className="position-relative vw-100 " 
+                      src={require("assets/SpaceYAssets/hero/001.png")
+                    }/>
+            {/* <Container className="shape-container d-flex align-items-center py-lg position-absolute vw-100 "
+            style={{left:"0%",top:"0%"}} 
+            >
+              <div className="col-12  px-0"> */}
+                <Row className="align-items-center justify-content-center position-absolute vw-100"
+                style={{left:"0",top:"30%"}}
+                >
+                  <Col className="text-center " lg="12"  >
                     
-                    }
-                      
-                    />
-                    {/* <p className="lead text-white">
-                      SpaceY 2025 
-                     </p> */}
+                    <p  className="h2" style={{color:"#B5E6F1",fontFamily:"BankGothic"}} >
+                      COLONY MARS WITH THE POWER OF BLOCKCHAIN
+                     </p>                    
                   </Col>
                 </Row>
-              </div>
-            {/* </Container> */}
-            {/* SVG separator */}
-            {/* <div className="separator separator-bottom separator-skew zindex-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-                version="1.1"
-                viewBox="0 0 2560 100"
-                x="0"
-                y="0"
-              >
-                <polygon
-                  className="fill-white"
-                  points="2560 0 2560 100 0 100"
-                />
-              </svg>
-            </div> */}
+
+                <Row className="align-items-center justify-content-center position-absolute vw-100"
+                style={{left:"0",top:"50%"}}
+                >
+                  <Col className="text-center " lg="12"  >
+                    
+                    <p  className="h3" style={{color:"#B5E6F1",fontFamily:"BankGothic"}} >
+                      PURCHASE YOUR ERC721 SPACEY TICKET <br /> GET EARLY ACCESS TO THE GRAND EXPLOERING ON MARS
+                     </p>                    
+                  </Col>
+                </Row>
+                <Row className="align-items-center justify-content-center position-absolute vw-100"
+                style={{left:"0",top:"70%"}}
+                >
+                  <Col className="text-center " lg="12"  >
+                    
+                    {/* <Button style={{backgroundColor:"transparent",borderColor:"transparent"}}><img src={url}/>
+                    </Button>                 */}
+                    <EABtn />
+                  </Col>
+                </Row>
+              {/* </div>
+            </Container>
+             */}
           </section>
         </div>
       </>

@@ -18,7 +18,28 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Row } from "reactstrap";
+// import { Container, Row } from "reactstrap";
+// nodejs library that concatenates classes
+import classnames from "classnames";
+
+// reactstrap components
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  FormGroup,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
+
+
 
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
@@ -28,6 +49,10 @@ import SpaceYFooter from "components/Footers/SpaceYFooter.js";
 
 // index page sections
 import Hero from "./IndexSections/spacey/Hero.js";
+import FreeTicket from "./IndexSections/spacey/FreeTicket.js";
+import Connection from "./IndexSections/spacey/Connection.js";
+import About from "./IndexSections/spacey/About.js"
+import Partner from "./IndexSections/spacey/Partner.js"
 // import Hero from "./IndexSections/Hero.js";
 
 import CustomControls from "./IndexSections/CustomControls.js";
@@ -37,13 +62,14 @@ import WhatIs from "./CustomSections/WhatIs.js";
 import Buildings from "./CustomSections/Buildings.js";
 import Alien from "./CustomSections/Alien.js";
 import Defend from "./CustomSections/Defend.js";
-import Connection from "components/ETH/Connection.js";
+// import Connection from "components/ETH/Connection.js";
 import Transaction from "components/ETH/Transaction.js";
 
 
 
 
 class SpaceY extends React.Component {
+  state={}
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -53,31 +79,43 @@ class SpaceY extends React.Component {
 
   
   render() {
+    // return (
+    //   <>
+    //   <SpaceYNavbar />
+    //   <main ref="main">
+    //     <Hero />
+    //             <SpaceYFooter />
+
+    //     </main>
+    //   </>
+    // )
+
     return (
-      <div className="bg-dark">
-        <SpaceYNavbar />
-        <main ref="main">
-            {/* <Connection />
-            <Transaction /> */}
-          <Hero />
-        <WhatIs />
-        <Buildings />
-        <Alien />
-        <Defend />
-        {/* <Buildings />
-        <Buildings /> */}
+      <>
+                 <SpaceYNavbar />
+
+           <div ref="main">
+
+             <Hero />
+             <Connection />
+            <FreeTicket />        
+            <About />
+            <Partner/>
+
+            
 
 
-          {/* <section className="section">
-          <Container>
-              <CustomControls />
-              <Menus />
-            </Container>
-          </section> */}
-        </main>
+
+
+        </div>
         <SpaceYFooter />
-      </div>
+
+      </>
     );
+
+
+
+
   }
 }
 

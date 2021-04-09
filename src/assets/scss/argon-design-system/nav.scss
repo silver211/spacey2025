@@ -1,9 +1,11 @@
 .nav-link {
-    color: $nav-link-color;
+    // color: $nav-link-color;
+    color: #61a7c0   !important;
 
     &:hover,
-    &.active {
-      color: theme-color("primary");
+    &.active {  
+    //   color: theme-color("primary");
+      color:#9DC0C8 !important;
     }
 
     i:not(.fa) {
@@ -30,6 +32,7 @@
 
         &:hover {
         	color: $nav-pills-link-hover-color;
+            // color:aqua;
         }
     }
 

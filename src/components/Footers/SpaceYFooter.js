@@ -109,12 +109,12 @@ class SpaceYFooter extends React.Component {
                 <div className=" copyright">
                   © {new Date().getFullYear()}{" "}
                   <a
-                    href="http://www.blockfish.io"
-                    target="_blank"
+                    // href="http://www.blockfish.io"
+                    // target="_blank"
                   >
-                    Blockfish Inc
+                    spacey2025.com
                   </a>
-                  .
+                  
                 </div>
               </Col>
               <Col md="6">

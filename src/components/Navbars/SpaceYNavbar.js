@@ -43,9 +43,9 @@ import Connection from "./Connection.js"
 
 class SpaceYNavbar extends React.Component {
   componentDidMount() {
-    let headroom = new Headroom(document.getElementById("navbar-main"));
-    // initialise
-    headroom.init();
+    // let headroom = new Headroom(document.getElementById("navbar-main"));
+    // // initialise
+    // headroom.init();
   }
   state = {
     collapseClasses: "",
@@ -67,16 +67,16 @@ class SpaceYNavbar extends React.Component {
   render() {
     return (
       <>
-        <header className="header-global">
+        {/* <header className="header-global"> */}
 
           <Navbar
                   // className="navbar-main navbar-transparent navbar-dark headroom fixed-top"
 
-            className="navbar-main  navbar-dark  fixed-top"
+            className="navbar-main  navbar-dark    bg-dark"
             expand="lg"
             id="navbar-main"
           >
-            {/* <Container> */}
+            <Container>
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
                 <img
                   alt="..."
@@ -111,18 +111,14 @@ class SpaceYNavbar extends React.Component {
                     </Col>
                   </Row>
                 </div>
-                {/* <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                <i className="ni ni-ui-04 d-lg-none mr-1" />
-                  <span  className="nav-link-inner--text">Aboard</span>
-                </Nav> */}
+                
 
 <Nav className="align-items-lg-center" navbar>
 <NavItem>
                     <NavLink
-                      href="#/"  
+                      href="/#home"  
                     >
-                      Introduction
-
+                      HOME
                     </NavLink>
                     
                   </NavItem> 
@@ -131,32 +127,50 @@ class SpaceYNavbar extends React.Component {
 
                   <NavItem>
                     <NavLink
-                      href="#/aboard"  
+                      href="/#freeticket"  
                     >
-                      Aboard
+                          FREE TICKET
 
                     </NavLink>
                     
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="#/share"  
+                      href="/#about"  
                     >
-                      Free Ticket
+                      ABOUT SPACEY2025
 
                     </NavLink>
                     
                   </NavItem>
+                  <NavItem>
+                    <NavLink
+                      href="/#home"    
+                    >
+                      GET SPAY
+
+                    </NavLink>
+                    
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      href="/#home"  
+                    >
+                      EARLY ACCESS
+
+                    </NavLink>
+                    
+                  </NavItem>
+
                   <NavItem>
                     <NavLink
                       href="#/mytickets"  
                     >
-                      My Ticket
+                      MARKET
 
                     </NavLink>
                     
                   </NavItem>
-                  
                   
                   
                 </Nav>
@@ -166,7 +180,16 @@ class SpaceYNavbar extends React.Component {
 
 
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                  <NavItem>
+                <NavItem>
+                    <NavLink
+                      href="#/mytickets"  
+                    >
+                      MY NFT
+
+                    </NavLink>
+                    
+                  </NavItem>
+                  {/* <NavItem>
                     <NavLink
                       className="nav-link-icon"
                       href="https://discord.gg/qRQdaaUm"
@@ -214,17 +237,13 @@ class SpaceYNavbar extends React.Component {
                       Mail Us
                     </UncontrolledTooltip>
                   </NavItem>
-                  {/* <NavItem className="d-none d-lg-block ml-lg-4">
-                    
-                                    <Connection />
+                   */}
 
-                  </NavItem> */}
-                  
                 </Nav>
               </UncontrolledCollapse>
-            {/* </Container> */}
+            </Container>
           </Navbar>
-        </header>
+        {/* </header> */}
       </>
     );
   }

@@ -37,7 +37,8 @@ import {
 } from "reactstrap";
 
 import Canvas from "components/ETH/Canvas.js";
-const saleticket=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_sale.png")
+import TransferNFT from "./TransferNFT.js";
+import SetName from "./SetName.js";
 
 class TicketModals extends React.Component {
   state = {};
@@ -65,7 +66,7 @@ class TicketModals extends React.Component {
     const width = width_o*ratio
     const height = height_o*ratio
     const {imgurl} =this.state
-    const {name,labeltext,imgsrc} = this.props
+    const {name,labeltext,imgsrc,type,tokenId,smtInst,account} = this.props
 
     return (
       <>
@@ -112,6 +113,22 @@ class TicketModals extends React.Component {
           }
      />
           <img src={imgurl} />
+              </div>
+              <div className="modal-footer align-item-center m-auto">
+                {type=="NFT"?
+                (<>
+                <SetName
+                tokenId={tokenId}
+                smtInst={smtInst}
+                account={account}
+                />
+                <TransferNFT 
+                tokenId={tokenId}
+                smtInst={smtInst}
+                account={account}
+                /></>)
+
+                :<></>}
               </div>
               
             </Modal>

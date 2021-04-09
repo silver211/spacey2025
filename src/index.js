@@ -22,15 +22,15 @@ import { BrowserRouter, HashRouter, Route, Switch, Redirect } from "react-router
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/font-awesome/css/font-awesome.min.css";
 import "assets/scss/argon-design-system-react.scss?v1.1.0";
+import "assets/SpaceYAssets/css/index.css";
 
 import Index from "views/Index.js";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
 import SpaceY from "views/spacey.js";
-import Landing from "views/Landing.js";
+import Landing from "views/examples/Landing.js";
 import Aboard from "views/aboard.js";
-import Share from "views/share.js";
 import MyTickets from "views/mytickets.js"
 
 import { Web3Provider } from 'react-web3';
@@ -39,8 +39,9 @@ import { Web3Provider } from 'react-web3';
 ReactDOM.render(
   <HashRouter>
     <Switch>
-      <Route path="/" exact render={props => <SpaceY {...props} />} />
-      <Route path="/demo" exact render={props => <Index {...props} />}  />
+      <Route path="/"  render={props => <SpaceY {...props} />} />
+      
+      {/* <Route path="/demo" exact render={props => <Index {...props} />}  />
       <Route
         path="/landing-page"
         exact
@@ -77,7 +78,7 @@ ReactDOM.render(
         exact
         render={props => < MyTickets { ...props} />}
       />
-      
+       */}
 
       <Redirect to="/" />
     </Switch>

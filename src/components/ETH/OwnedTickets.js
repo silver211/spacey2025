@@ -1,5 +1,7 @@
 import React from 'react';
 import Web3 from 'web3';
+import {ethers} from "ethers";
+
 
 import {
   Button,
@@ -83,33 +85,28 @@ handleChange(e){
       const {height_o,width_o,ratio} = this.state
       const width = width_o*ratio
       const height = height_o*ratio
-      var address 
-      await window.web3.eth.getAccounts().then(e=>{address = e[0]})
-      // console.log(address)
-      if (address == undefined){
+      const {ethereum} = window
+      if (!ethereum){
         return
       }
 
-      var smtInst = new window.web3.eth.Contract(SMTtestabi,SMTtestaddr);
-      var smt
-      await smtInst.methods.balanceOf(address).call().then(e=>{
-        smt = e
-      })
-      // console.log(smt)
-      // console.log(smtInst.methods)
-      var tokenIdLst,itemLst
-      await smtInst.methods.tokensOfOwner(address).call().then(e=>{
-        tokenIdLst = e;
-    })
-      // console.log(tokenIdLst)
+      const provider= new ethers.providers.Web3Provider(ethereum)
+      const smtInst = new ethers.Contract(SMTtestaddr,SMTtestabi,provider.getSigner());
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (!accounts){
+        return
+      }
+      const account = accounts[0]
+  
+      const tokenIdLst = await smtInst.tokensOfOwner(account)
+      
       var tokenLst=[]
       for(const tokenId of tokenIdLst){
-        var tokenHash,tokenName,tokenURI
-        await smtInst.methods.tokenHash(tokenId).call().then(e=>{tokenHash=e;})
-        await smtInst.methods.tokenName(tokenId).call().then(e=>{tokenName=e;})
-        await smtInst.methods.tokenURI(tokenId).call().then(e=>{tokenURI=e;})
+        const tokenHash = await smtInst.tokenHash(tokenId)
+        const tokenName = await smtInst.tokenName(tokenId)
+        const tokenURI = await smtInst.tokenURI(tokenId)
         var tokenInfo = {
-          id:tokenId,
+          id:tokenId.toNumber(), 
           hash:tokenHash,
           name:tokenName,
           URI:tokenURI
@@ -122,9 +119,9 @@ handleChange(e){
       
 
       this.setState({
-          account:address,
-          smt:smt,
+          account:account,
           smts:tokenLst,
+          smtInst:smtInst
       })
       // console.log(tokenLst)
   }
@@ -135,7 +132,6 @@ handleChange(e){
       }
     // console.log(window.ethereum)
     if (window.ethereum){
-        window.web3 = new Web3(window.ethereum)
         window.ethereum.enable();
         this.getAccountInfo();
 
@@ -151,7 +147,7 @@ handleChange(e){
  * }
  */
     render(){
-      const {imgurl,smts,canvas,select} = this.state
+      const {imgurl,smts,canvas,select,smt,smtInst,account} = this.state
       // const width_o = 2560
       // const height_o = 1497
       // const ratio = 0.4
@@ -160,7 +156,6 @@ handleChange(e){
       let options=[]
       for(let idx=0;idx<smts.length;idx++){
         const smt=smts[idx]
-        
         options.push(<option key={smt.id} value={idx}> {smt.id} </option>)}
       
       // if (select<0 || smts.length==0){
@@ -214,9 +209,13 @@ handleChange(e){
                           </Button> */}
                           <Col>
                           <TicketModals
+                           type="NFT"
                            name={smts[select].name}
                            labeltext="My Ticket"
                            imgsrc={saleticket}
+                           tokenId={smts[select].id}
+                           smtInst={smtInst}
+                           account = {account}
                           /></Col>
                           
 

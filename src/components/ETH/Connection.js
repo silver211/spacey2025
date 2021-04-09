@@ -48,45 +48,44 @@ componentDidUpdate(nextState,nextProps){
 }
 
   async getAccountInfo(){
-      const {ethereum,web3} = window
+      const {ethereum} = window
+      if (!ethereum){
+        return
+      }
       const provider= new ethers.providers.Web3Provider(ethereum)
       
-      var spayInst = new ethers.Contract(SPAYtestaddr,SPAYtestabi,provider);
-      var smtInst = new ethers.Contract(SMTtestaddr,SMTtestabi,provider);
-      // var smtInst = new window.web3.eth.Contract(SMTtestabi,SMTtestaddr)
+      // console.log(provider)
+      const spayInst = new ethers.Contract(SPAYtestaddr,SPAYtestabi,provider.getSigner());
+      const smtInst = new ethers.Contract(SMTtestaddr,SMTtestabi,provider.getSigner());
+      const saleInst = new ethers.Contract(SALEtestaddr,SALEtestabi,provider.getSigner());
       const accounts = await ethereum.request({ method: 'eth_accounts' });
       if (!accounts){
         return
       }
-      // await window.web3.eth.getAccounts().then(e=>{new_account=e[0]})
-      // console.log(new_account,typeof(new_account))
       const balance = await ethereum.request({
         method:'eth_getBalance',
         params:[
           accounts[0],'latest'
         ]
     })
-        // console.log(spayInst)
       const spay = await spayInst.balanceOf(accounts[0]).then(ethers.utils.formatEther)
       const smt = await smtInst.balanceOf(accounts[0]).then(e=>{return    e.toNumber()})
-      const allowance = await spayInst.allowance(accounts[0], SALEtestaddr).then(ethers.utils.formatEther)
-      
-      // await spayInst.methods.balanceOf(new_account).call().then(e=>{
-      //   new_spay = window.web3.utils.fromWei(e,"ether")
-      // })
-      // // console.log(new_spay)
-
-      // await smtInst.methods.balanceOf(new_account).call().then(e=>{
-      //   new_smt = e
-      // })
-      // console.log(new_smt)
-
+      const allowance = await spayInst.allowance(accounts[0], SALEtestaddr)   
+      const price = await saleInst.smtPrice()
+      const saled = await smtInst.totalTokens()
+      const limit = await smtInst.totalTokenLimit()
       this.setState({
           ether:ethers.utils.formatEther(balance) ,
           account:accounts[0],
           spay:spay,
           smt:smt,
-          allowance:allowance
+          allowance:allowance,
+          spayInst:spayInst,
+          smtInst:smtInst,
+          saleInst:saleInst,
+          provider:provider,
+          price:price,
+          stock:limit-saled
       })
   }
 
@@ -103,7 +102,8 @@ componentDidUpdate(nextState,nextProps){
         // })});
         // window.web3 = new Web3(window.ethereum)
         ethereum.enable();
-        this.getAccountInfo();
+        this.interval=setInterval(this.getAccountInfo.bind(this),1000)
+        // this.getAccountInfo();
 
         // window.ethereum.request({ method: 'eth_requestAccounts' });
 
@@ -111,17 +111,17 @@ componentDidUpdate(nextState,nextProps){
     }
     
 }
-  /**
- * web3Context = {
- *   accounts: {Array<string>} - All accounts
- *   selectedAccount: {string} - Default ETH account address (coinbase)
- *   network: {string} - One of 'MAINNET', 'ROPSTEN', or 'UNKNOWN'
- *   networkId: {string} - The network ID (e.g. '1' for main net)
- * }
- */
+
+  componentWillUnmount(){
+      if(this.interval){
+      clearInterval(this.interval)
+      }
+  }
+  
     render(){
-      const {smt,spay,account,ether,allowance} = this.state
-      
+      const {account,allowance,spayInst,smtInst,price,saleInst,stock} = this.state
+      // console.log("render")
+      // console.log(price,allowance,typeof(price),typeof(allowance))
 
 
   return (
@@ -138,19 +138,25 @@ componentDidUpdate(nextState,nextProps){
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5 text-center">
                     {account?
-                     (<> <h3>My Account:{account}</h3>
+                     (<> 
+                     {/* <h3>My Account:{account}</h3> */}
                       {/* <p>{account}</p> */}
-                      <h3>My ETH:{ether} ETH</h3>
+                      {/* <h3>My ETH:{ether} ETH</h3> */}
                       {/* <p>{ether} ETH</p> */}
-                      <h3>My SPAY:{spay} SPAY</h3>
+                      {/* <h3>My SPAY:{spay} SPAY</h3> */}
                       {/* <p>{spay} SPAY</p> */}
-                      <h3>My Spay Allowance:{allowance} SPAY</h3>
-
-                      <h3>My SMT:{smt} SMT</h3>
-
-                      
-                      {/* <p>{smt} SMT</p>                      */}
-                        <Transaction allowance={allowance}/> </>):(<div className="text-center text-muted mb-4">
+                      <p className="h2">Now Ticket Price is {ethers.utils.formatEther(price)} SPAY</p>
+                      <p className="h3">{stock} in stock</p>
+                      {/* <h3>My SMT:{smt} SMT</h3> */}
+                        <Transaction 
+                        allowance={allowance}
+                        account={account}
+                        spayInst={spayInst}
+                        smtInst={smtInst}
+                        saleInst = {saleInst}
+                        price = {price}
+                        />
+                         </>):(<div className="text-center text-muted mb-4">
                         <p className="h3 text-center">Please connect MetaMask<br/>If already connected,please refresh</p>
                       </div>  )}
                     </CardBody>
