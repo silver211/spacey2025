@@ -215,22 +215,35 @@ class FreeTicket extends React.Component {
         <p className="text-white" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>SPREAD THE WORD & CLAIM YOUR FREE TICKET </p>
         </div>
         <div className="position-absolute" style={{left:"3%",top:"30%",width:"40%"}}>
-          <img src={inputImg} style={{width:"100%"}}/>
-        </div> 
-        <div className="position-absolute" style={{left:"6%",top:"36%",width:"35vw"}}>
-          <Input style={{fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
-          placeholder="FIRST NAME" name="firstname" value={firstname} onChange={handleChange } autoComplete="off"></Input>
-        </div> 
-        <div className="position-absolute" style={{left:"6%",top:"47%",width:"35vw"}}>
-          <Input style={{fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
-          placeholder="LAST NAME" name="lastname" value={lastname} onChange={handleChange} autoComplete="off"   ></Input>
-        </div> 
-        <div className="position-absolute" style={{left:"6%",top:"58%",width:"35vw"}}>
-          <Button  className="py-0 text-left " style={{width:"100%",backgroundColor:"transparent",borderColor:"transparent",paddingLeft:"2%"
+          <div className="position-relatve">
+          <img src={inputImg} style={{width:"100%"}}/> </div>
+          <input style={{
+            left:"8%",top:"18%",width:"90%",height:"18%",position:"absolute",  
+            fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
+          placeholder="FIRST NAME" name="firstname" value={firstname} onChange={handleChange } autoComplete="off"></input>
+          <input style={{
+            left:"8%",top:"45%",width:"90%",height:"18%",position:"absolute",  
+            fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
+          placeholder="LAST NAME" name="lastname" value={lastname} onChange={handleChange } autoComplete="off"></input>
+          <Button  className="py-0 text-left " style={{left:"8%",top:"70%",width:"90%",height:"18%",position:"absolute",backgroundColor:"transparent",borderColor:"transparent",paddingLeft:"2%"
            }}
            onClick={handleSubmit}
            >
              <p className="mb-0"  style={{fontSize:"2vw",fontFamily:"BankGothic",color:"#55BCD8  "}}
+          >{visible?"HIDE MY FREE TICKET":"CLAIM MY FREE TICKET"}</p>
+          </Button>
+        </div> 
+        
+        {/* <div className="position-absolute" style={{left:"6%",top:"47%",width:"35%",height:"7%"}}>
+          <Input style={{width:"35%",height:"7%",fontSize:"3vh",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
+          placeholder="LAST NAME" name="lastname" value={lastname} onChange={handleChange} autoComplete="off"   ></Input>
+        </div> 
+        <div className="position-absolute" style={{left:"6%",top:"58%",width:"35%",height:"7%"}}>
+          <Button  className="py-0 text-left " style={{width:"100%",backgroundColor:"transparent",borderColor:"transparent",paddingLeft:"2%"
+           }}
+           onClick={handleSubmit}
+           >
+             <p className="mb-0"  style={{fontSize:"3vh",fontFamily:"BankGothic",color:"#55BCD8  "}}
           >{visible?"HIDE MY FREE TICKET":"CLAIM MY FREE TICKET"}</p>
           </Button>
           
@@ -240,7 +253,7 @@ class FreeTicket extends React.Component {
 
         <small className="text-white">*No gas fee needed. The   free ticket is not a real NFT token. It will not grant your early access to the game.</small>
 
-           </div>
+           </div> */}
 
         {visible?(
         <div className="position-absolute" style={{left:"45%",top:"35%",width:"50%"}}>
