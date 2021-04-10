@@ -39,6 +39,10 @@ import {
 import Canvas from "components/ETH/Canvas.js";
 import TransferNFT from "./TransferNFT.js";
 import SetName from "./SetName.js";
+const backgroudImg = require("assets/SpaceYAssets/SpaceTicket/004.png")
+const imgsrc=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_free.png")
+
+
 
 class TicketModals extends React.Component {
   state = {};
@@ -63,80 +67,127 @@ class TicketModals extends React.Component {
     const width_o = 2560
     const height_o = 1497
     const ratio = 0.4
-    const width = width_o*ratio
-    const height = height_o*ratio
+    // const width = width_o*ratio
+    // const height = height_o*ratio
+    const width=1016
+    const height=421
     const {imgurl} =this.state
-    const {name,labeltext,imgsrc,type,tokenId,smtInst,account} = this.props
+    const {name,labeltext,type,tokenId,smtInst,account} = this.props
+    const {isopen,toggle}=this.props
+    console.log(isopen, toggle)
+    
+    return (<Modal
+      // className="modal-dialog-centered"
+      size="xl"
+      // isOpen={this.state.defaultModal}
+      isOpen={isopen}
+      toggle={() => toggle("ticketModal")}
+    >
+      
+        <img
+                      alt="..."
+                      className="position-relative  " 
+                      src={backgroudImg }
+                      style={{width:"100%"}}/>
+        <Canvas save={this.saveImgurl} 
+  width={width} 
+  height={height} 
+  imgSrc={imgsrc}
+  font="40px sans-serif"
+  fillColor="#ffffff"
+  text={[["",width*0.45,height*0.5,"left"]]
+  }
+/>
+  <img src={imgurl} className="position-absolute" style={{left:"10%",top:"20%",width:"80%"}}/> 
+  {/* </div> */}
+      {/* </div> */}
+      {/* <div className="modal-footer align-item-center m-auto">
+        {type=="NFT"?
+        (<>
+        <SetName
+        tokenId={tokenId}
+        smtInst={smtInst}
+        account={account}
+        />
+        <TransferNFT 
+        tokenId={tokenId}
+        smtInst={smtInst}
+        account={account}
+        /></>)
 
-    return (
-      <>
+        :<></>}
+      </div> */}
+      
+    </Modal>)
+
+
+
+    // return (
+    //   <>
         
-        <Row>
-          <Col >
-            <Button
-              block
-              className="mb-3"
-              color="primary"
-              type="button"
-              onClick={() => this.toggleModal("defaultModal")}
-            >
-              {labeltext}
-            </Button>
-            <Modal
-              className="modal-dialog-centered"
-              size="xl"
-              isOpen={this.state.defaultModal}
-              toggle={() => this.toggleModal("defaultModal")}
-            >
-              <div className="modal-header ">
-                {/* <h6 className="modal-title text-center" id="modal-title-default">
-                  My SMT Ticket
-                </h6> */}
-                <button
-                  aria-label="Close"
-                  className="close"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={() => this.toggleModal("defaultModal")}
-                >
-                  <span aria-hidden={true}>×</span>
-                </button>
-              </div>
-              <div className="modal-body align-item-center m-auto">
-                <Canvas save={this.saveImgurl} 
-          width={width} 
-          height={height} 
-          imgSrc={imgsrc}
-          font="40px sans-serif"
-          fillColor="#ffffff"
-          text={[[name,width*0.45,height*0.5,"left"]]
-          }
-     />
-          <img src={imgurl} />
-              </div>
-              <div className="modal-footer align-item-center m-auto">
-                {type=="NFT"?
-                (<>
-                <SetName
-                tokenId={tokenId}
-                smtInst={smtInst}
-                account={account}
-                />
-                <TransferNFT 
-                tokenId={tokenId}
-                smtInst={smtInst}
-                account={account}
-                /></>)
+    //     <Row>
+    //       <Col >
+    //         <Button
+    //           block
+    //           className="mb-3"
+    //           color="primary"
+    //           type="button"
+    //           onClick={() => this.toggleModal("defaultModal")}
+    //         >
+    //           {labeltext}
+    //         </Button>
+    //         <Modal
+    //           className="modal-dialog-centered"
+    //           size="xl"
+    //           isOpen={this.state.defaultModal}
+    //           toggle={() => this.toggleModal("defaultModal")}
+    //         >
+    //           <div className="modal-header ">
+    //             <button
+    //               aria-label="Close"
+    //               className="close"
+    //               data-dismiss="modal"
+    //               type="button"
+    //               onClick={() => this.toggleModal("defaultModal")}
+    //             >
+    //               <span aria-hidden={true}>×</span>
+    //             </button>
+    //           </div>
+    //           <div className="modal-body align-item-center m-auto">
+    //             <Canvas save={this.saveImgurl} 
+    //       width={width} 
+    //       height={height} 
+    //       imgSrc={imgsrc}
+    //       font="40px sans-serif"
+    //       fillColor="#ffffff"
+    //       text={[[name,width*0.45,height*0.5,"left"]]
+    //       }
+    //  />
+    //       <img src={imgurl} />
+    //           </div>
+    //           <div className="modal-footer align-item-center m-auto">
+    //             {type=="NFT"?
+    //             (<>
+    //             <SetName
+    //             tokenId={tokenId}
+    //             smtInst={smtInst}
+    //             account={account}
+    //             />
+    //             <TransferNFT 
+    //             tokenId={tokenId}
+    //             smtInst={smtInst}
+    //             account={account}
+    //             /></>)
 
-                :<></>}
-              </div>
+    //             :<></>}
+    //           </div>
               
-            </Modal>
-          </Col>
+    //         </Modal>
+    //       </Col>
           
-        </Row>
-      </>
-    );
+    //     </Row>
+    //   </>
+    // );
   }
 }
 

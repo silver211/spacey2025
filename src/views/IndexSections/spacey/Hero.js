@@ -28,7 +28,7 @@ class Hero extends React.Component {
       
         <div className="position-relative" id="home">
           
-          <section className="section section-hero  section-shaped pt-0 pb-0 " >
+          <section className="section   section-shaped pt-0 pb-0 " >
           
           <img
                       alt="..."
@@ -44,7 +44,7 @@ class Hero extends React.Component {
                 >
                   <Col className="text-center " lg="12"  >
                     
-                    <p  className="h2" style={{color:"#B5E6F1",fontFamily:"BankGothic"}} >
+                    <p  style={{color:"#B5E6F1",fontFamily:"BankGothic",fontSize:"3vw"}} >
                       COLONY MARS WITH THE POWER OF BLOCKCHAIN
                      </p>                    
                   </Col>
@@ -55,21 +55,22 @@ class Hero extends React.Component {
                 >
                   <Col className="text-center " lg="12"  >
                     
-                    <p  className="h3" style={{color:"#B5E6F1",fontFamily:"BankGothic"}} >
+                    <p  className="h3" style={{color:"#B5E6F1",fontFamily:"BankGothic",fontSize:"2vw"}} >
                       PURCHASE YOUR ERC721 SPACEY TICKET <br /> GET EARLY ACCESS TO THE GRAND EXPLOERING ON MARS
                      </p>                    
                   </Col>
                 </Row>
+                {window.innerWidth>=1024?
                 <Row className="align-items-center justify-content-center position-absolute vw-100"
-                style={{left:"0",top:"70%"}}
+                style={{left:"0",top:"70%",height:"30%"}}
                 >
-                  <Col className="text-center " lg="12"  >
+                  <Col className="text-center justify-content-center position-relative" style={{height:"100%"}} lg="12"  >
                     
                     {/* <Button style={{backgroundColor:"transparent",borderColor:"transparent"}}><img src={url}/>
                     </Button>                 */}
-                    <EABtn />
+                    <EABtn  />
                   </Col>
-                </Row>
+                </Row>:<></>}
               {/* </div>
             </Container>
              */}

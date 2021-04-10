@@ -16,7 +16,9 @@ import {
   Container,
   Row,
   Col,
-  Label
+  Label,
+  NavItem,
+  NavLink
 } from "reactstrap";
 // import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr}     from "./spay_testabi.js"
 class Connection extends React.Component {
@@ -26,7 +28,6 @@ constructor(prop){
     super(prop);
     this.state={ether:"0",
     spay:"0",
-    account:"",
     smt:"0"
 }
     this.handleClick=this.handleClick.bind(this)
@@ -38,12 +39,12 @@ constructor(prop){
     this.ethereum.request({ method: 'eth_requestAccounts' });
  }
 
-componentDidUpdate(nextState,nextProps){
-  return this.state!=nextState
-}
+  // componentDidUpdate(nextState,nextProps){
+  //   return this.state!=nextState
+  // }
 
   async getAccountInfo(){
-      const {ethereum,web3} = window
+      const {ethereum} = window
       const accounts = await ethereum.request({method:'eth_requestAccounts'})
       if (accounts){
         this.setState({
@@ -56,10 +57,16 @@ componentDidUpdate(nextState,nextProps){
 
   handleClick(){
     const {ethereum} = window
-    console.log("onclick")
+    // console.log("onclick")
     if (typeof ethereum == 'undefined') {
-      console.log('MetaMask is installed!');
+      // console.log('MetaMask is installed!');
       alert("Please get MetaMask！")
+      return
+    }
+    const {account}=this.state
+    if (account){
+      const {toggleModal} = this.props
+      toggleModal("ticketModal")
       return
     }
     if (ethereum){
@@ -80,12 +87,23 @@ componentDidUpdate(nextState,nextProps){
     render(){
       const {smt,spay,account,ether} = this.state
       const {handleClick}= this
-      if (account){
-        return (<></>)
-      }
+      console.log(account)
+      // if (account){
+      //   return (<></>)
+      // }
 
   return (
-<Button
+    <NavItem>
+                    <NavLink
+                      onClick={handleClick}  
+                      href="/#nav"
+
+                    >{account?"MY NFT":"SIGN IN"}
+                    </NavLink>
+                    
+                  </NavItem>
+
+/* <Button
                       className=" btn-icon"
                       onClick={handleClick}
                     
@@ -98,8 +116,8 @@ componentDidUpdate(nextState,nextProps){
                       <span className="nav-link-inner--text ml-1">
                         Connect
                       </span>
-                    </Button>
-  );}
+                    </Button> */
+  )}
 }
 
 // Connection.contextTypes = {

@@ -50,7 +50,6 @@ import SpaceYFooter from "components/Footers/SpaceYFooter.js";
 // index page sections
 import Hero from "./IndexSections/spacey/Hero.js";
 import FreeTicket from "./IndexSections/spacey/FreeTicket.js";
-import Connection from "./IndexSections/spacey/Connection.js";
 import About from "./IndexSections/spacey/About.js"
 import Partner from "./IndexSections/spacey/Partner.js"
 // import Hero from "./IndexSections/Hero.js";
@@ -97,7 +96,6 @@ class SpaceY extends React.Component {
            <div ref="main">
 
              <Hero />
-             <Connection />
             <FreeTicket />        
             <About />
             <Partner/>

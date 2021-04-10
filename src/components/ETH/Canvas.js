@@ -45,18 +45,18 @@ class Canvas extends React.Component {
   }
   export default Canvas
   
-  Canvas.defaultProps={
-    width:500,
-    height:500,
-    font:"40px Courier"
-  }
+  // Canvas.defaultProps={
+  //   width:500,
+  //   height:500,
+  //   font:"40px Courier"
+  // }
   
-  Canvas.propTypes={
-    width:PropTypes.number,
-    height:PropTypes.number,
-    imgSrc:PropTypes.string.isRequired,
-    font:PropTypes.string,
-    fillColor:PropTypes.string,
+  // Canvas.propTypes={
+  //   width:PropTypes.number,
+  //   height:PropTypes.number,
+  //   imgSrc:PropTypes.string.isRequired,
+  //   font:PropTypes.string,
+  //   fillColor:PropTypes.string,
   
-  }
+  // }
   

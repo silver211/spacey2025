@@ -31,22 +31,40 @@ import {
   NavbarBrand,
   Navbar,
   NavItem,
-  NavLink,
+  NavLink,  
   Nav,
   Container,
   Row,
   Col,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  Modal
 } from "reactstrap";
 
 import Connection from "./Connection.js"
+import TicketModals from "views/IndexSections/spacey/TicketModals.js"
+import GetSpay from "views/IndexSections/spacey/GetSpay.js"
+
+import Canvas from "components/ETH/Canvas.js";
+const imgsrc=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_free.png")
+
 
 class SpaceYNavbar extends React.Component {
   componentDidMount() {
-    // let headroom = new Headroom(document.getElementById("navbar-main"));
-    // // initialise
-    // headroom.init();
+
+    
   }
+
+  constructor(props){
+    super(props)
+    this.toggleModal=this.toggleModal.bind(this)
+  }
+
+  toggleModal(state) {
+    this.setState({
+      [state]:!this.state[state]
+    })
+  }
+  
   state = {
     collapseClasses: "",
     collapseOpen: false
@@ -63,8 +81,13 @@ class SpaceYNavbar extends React.Component {
       collapseClasses: ""
     });
   };
+  
 
   render() {
+    const width=1016
+    const height=421
+    const vw = window.innerWidth
+
     return (
       <>
         {/* <header className="header-global"> */}
@@ -74,7 +97,7 @@ class SpaceYNavbar extends React.Component {
 
             className="navbar-main  navbar-dark    bg-dark"
             expand="lg"
-            id="navbar-main"
+            id="navbar-main" id="nav"
           >
             <Container>
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
@@ -90,7 +113,7 @@ class SpaceYNavbar extends React.Component {
                 toggler="#navbar_global"
                 navbar
                 className={this.state.collapseClasses}
-                onExiting={this.onExiting}
+                onExiting={this.onExiting}    
                 onExited={this.onExited}
               >
                 <div className="navbar-collapse-header">
@@ -116,7 +139,7 @@ class SpaceYNavbar extends React.Component {
 <Nav className="align-items-lg-center" navbar>
 <NavItem>
                     <NavLink
-                      href="/#home"  
+                      href="/#home"
                     >
                       HOME
                     </NavLink>
@@ -128,6 +151,7 @@ class SpaceYNavbar extends React.Component {
                   <NavItem>
                     <NavLink
                       href="/#freeticket"  
+
                     >
                           FREE TICKET
 
@@ -137,24 +161,30 @@ class SpaceYNavbar extends React.Component {
                   <NavItem>
                     <NavLink
                       href="/#about"  
+
                     >
                       ABOUT SPACEY2025
 
                     </NavLink>
                     
                   </NavItem>
-                  <NavItem>
+
+                  {vw>=1024?
+                  (<>
+                  <NavItem onClick={() => this.toggleModal("uniModal")} >
                     <NavLink
-                      href="/#home"    
+                      href="/#nav"    
+
                     >
                       GET SPAY
 
                     </NavLink>
                     
                   </NavItem>
-                  <NavItem>
+                  <NavItem onClick={() => this.toggleModal("ticketModal")}>
                     <NavLink
-                      href="/#home"  
+                      href="/#nav"  
+
                     >
                       EARLY ACCESS
 
@@ -164,13 +194,14 @@ class SpaceYNavbar extends React.Component {
 
                   <NavItem>
                     <NavLink
-                      href="#/mytickets"  
+                      href="/#nav"  
+
                     >
                       MARKET
 
                     </NavLink>
                     
-                  </NavItem>
+                  </NavItem> </>):<></>}
                   
                   
                 </Nav>
@@ -178,71 +209,36 @@ class SpaceYNavbar extends React.Component {
 
 
 
-
+                {vw>=1024?
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                <NavItem>
+                {/* <NavItem>
                     <NavLink
                       href="#/mytickets"  
-                    >
-                      MY NFT
 
+                    >
+                        MY NFT
                     </NavLink>
                     
-                  </NavItem>
-                  {/* <NavItem>
-                    <NavLink
-                      className="nav-link-icon"
-                      href="https://discord.gg/qRQdaaUm"
-                      id="tooltip333589074"
-                      target="_blank"
-                    >
-                      <i className="fa fa-discord" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Discord
-                      </span>
-                    </NavLink>
-                    <UncontrolledTooltip delay={0} target="tooltip333589074">
-                      Join our discord
-                    </UncontrolledTooltip>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className="nav-link-icon"
-                      href="https://t.me/Spacey2025"
-                      id="tooltip356693867"
-                      target="_blank"
-                    >
-                      <i className="fa fa-telegram" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Telegram
-                      </span>
-                    </NavLink>
-                    <UncontrolledTooltip delay={0} target="tooltip356693867">
-                      Join our telegram
-                    </UncontrolledTooltip>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className="nav-link-icon"
-                      href="mailto:support@spacey2025.com"
-                      id="tooltip184698705"
-                      target="_blank"
-                    >
-                      <i className="fa fa-envelope" />    
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Mail
-                      </span>
-                    </NavLink>
-                    <UncontrolledTooltip delay={0} target="tooltip184698705">
-                      Mail Us
-                    </UncontrolledTooltip>
-                  </NavItem>
-                   */}
+                  </NavItem> */}
 
-                </Nav>
+                  <Connection 
+                  toggleModal={this.toggleModal}
+                  />
+                </Nav>:<></>}
               </UncontrolledCollapse>
             </Container>
           </Navbar>
+          <TicketModals 
+          toggle={this.toggleModal} 
+          isopen={this.state.ticketModal}
+          imgsrc={imgsrc}
+          />
+          <GetSpay
+          toggle={this.toggleModal} 
+          isopen={this.state.uniModal}
+          // imgsrc={imgsrc}
+          />
+
         {/* </header> */}
       </>
     );

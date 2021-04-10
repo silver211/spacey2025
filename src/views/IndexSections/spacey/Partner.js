@@ -56,7 +56,11 @@ class Partner extends React.Component {
                       alt="..."
                       className="position-relative vw-100 " 
                       src={backgroudImg 
-                    }/>
+                    }/> 
+
+<div className="text-center position-absolute" style={{width:"60%",left:"20%",top:"5%"}}>
+        <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}><span style={{fontSize:"4.5vw"}}>W</span>HAT OUR PARTNERS ARE SAYING</p>
+        </div>
       
       <div className="position-absolute" style={{
           top:"20%",
@@ -68,15 +72,16 @@ class Partner extends React.Component {
                       width="100%" 
                       src={frame 
                     }/></div>
+        {window.innerWidth>=1024?
         <Row className="align-items-center justify-content-center position-absolute vw-100"
-                style={{left:"0",top:"80%",height:"10%"}}
+                style={{left:"0",top:"70%",height:"30%"}}
                 >
-                  <Col className="text-center " height="100%"   >
+                  <Col className="text-center " style={{height:"100%"}} lg="12"  >
                     
                     
-                    <EABtn height="100%"/>
+                    <EABtn />
                   </Col>
-                </Row>
+                </Row>:<></>}
         </div>
         
       </>

@@ -39,6 +39,8 @@ import EABtn from "./EABtn.js"
 const freeticket=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_free.png")
 const backgroudImg = require("assets/SpaceYAssets/SpaceTicket/004.png")
 const inputImg = require("assets/SpaceYAssets/SpaceTicket/input.png")
+const connection = require("assets/SpaceYAssets/SpaceTicket/connection.png")
+const linkImg = require("assets/SpaceYAssets/link.png")
 class FreeTicket extends React.Component {
   componentDidMount() {
     // document.documentElement.scrollTop = 0;
@@ -53,7 +55,7 @@ class FreeTicket extends React.Component {
           lastname:"",
           imgurl:"",
           freeticket:freeticket,
-          visible:"hidden"
+          visible:false
       }
       this.handleChange=this.handleChange.bind(this)
       this.handleSubmit=this.handleSubmit.bind(this)
@@ -70,42 +72,44 @@ class FreeTicket extends React.Component {
   }
 
   handleChange(e){
-      const v =e.target.value
+      // const v =e.target.value
+      const v= e.target.value.replace(/[^(a-zA-Z)]/g, '').substring(0,10)
       this.setState({
           ...this.state,
-          [e.target.name]:v
-      })
+          [e.target.name]:v.toUpperCase() 
+      })  
   }
 
   handleSubmit(e){
-      const {firstname,lastname} = this.state
+      const {firstname,lastname,visible} = this.state
       e.preventDefault();
     //   alert(this.state.firstname+" "+ this.state.lastname)
     //   console.log(this.state.imgurl )
       if (firstname == "" || lastname ==""){
           return
       }
-      const {imgurl} = this.state
+      // const name = firstname+" "+lastname
+      // alert(name)
+      // const {imgurl} = this.state
       this.setState({
           ...this.state,
-          visible:"visible"
+          visible:!visible
       })
-    //   console.log(imgurl)
-    //   var img = new Image()
-    //   img.src = imgurl
-    //   var w = window.open("");
-    //   w.document.write(img.outerHTML);
-    //   w.document.close();
+      console.log(visible)
+   
   }
 
   
   render() {
-      var {freeticket,firstname,lastname,visible,imgurl} = this.state
+      const {freeticket,firstname,lastname,visible,imgurl} = this.state
+      const {handleChange,handleSubmit} = this
       const width_o = 2560
       const height_o = 1497
       const ratio = 0.4
-      const width = width_o*ratio
-      const height = height_o*ratio
+      // const width = width_o*ratio
+      // const height = height_o*ratio
+      const width=1016
+      const height=421
       const name = firstname+" "+lastname
 //     return (
 //       <>
@@ -179,62 +183,95 @@ class FreeTicket extends React.Component {
 //     );
 
       return (<>
-        <div className="position-relative">
+        <div className="position-relative" id="freeticket">
         <img
                       alt="..."
                       className="position-relative vw-100 " 
                       src={backgroudImg 
                     }/>
-        <div className="position-absolute" style={{left:"10%",top:"20%"}}>
-        <p className="h2 text-white" style={{fontFamily:"BankGothic"}}>SPREAD THE WORD & CLAIM YOUR FREE TICKET </p>
+        <div className="position-absolute vw-100" style={{left:"0",top:"-3%"}}>
+        <img width="100%" src={linkImg}/>
         </div>
-        <div className="position-absolute" style={{left:"10%",top:"30%"}}>
-          <img src={inputImg} />
+
+        
+        
+        <div className="position-absolute vw-100" style={{left:"0",top:"0"}}>
+        <img width="100%" src={connection} />
+
+        </div>
+
+        <div className="position-absolute vw-100" style={{left:"0",top:"4%"}}>
+        <Row className="vw-100 position-absolute justify-items-center" style={{top:0,left:0,height:"20%"}}>
+          <Col className="my-auto text-center"><p  style={{fontFamily:"BankGothic",fontSize:"1.5vw"}}>100 NFT<br/>SPACESHIP TICKETS</p></Col>
+          <Col className="my-auto text-center"><p style={{fontFamily:"BankGothic",fontSize:"1.5vw"}}>$500K+<br/>TOURNAMENT PRIZE POOL</p></Col>
+          <Col className="my-auto text-center"><p style={{fontFamily:"BankGothic",fontSize:"1.5vw"}}>360 NFT<br/>MARS LAND LOTS</p></Col>
+
+
+        </Row> 
+        </div>  
+
+
+        <div className="position-absolute" style={{left:"5%",top:"20%"}}>
+        <p className="text-white" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>SPREAD THE WORD & CLAIM YOUR FREE TICKET </p>
+        </div>
+        <div className="position-absolute" style={{left:"3%",top:"30%",width:"40%"}}>
+          <img src={inputImg} style={{width:"100%"}}/>
         </div> 
-        <div className="position-absolute" style={{left:"45%",top:"25%",width:"50%"}}>
-          <img src={freeticket} width="100%"/>
+        <div className="position-absolute" style={{left:"6%",top:"36%",width:"35vw"}}>
+          <Input style={{fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
+          placeholder="FIRST NAME" name="firstname" value={firstname} onChange={handleChange } autoComplete="off"></Input>
+        </div> 
+        <div className="position-absolute" style={{left:"6%",top:"47%",width:"35vw"}}>
+          <Input style={{fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
+          placeholder="LAST NAME" name="lastname" value={lastname} onChange={handleChange} autoComplete="off"   ></Input>
+        </div> 
+        <div className="position-absolute" style={{left:"6%",top:"58%",width:"35vw"}}>
+          <Button  className="py-0 text-left " style={{width:"100%",backgroundColor:"transparent",borderColor:"transparent",paddingLeft:"2%"
+           }}
+           onClick={handleSubmit}
+           >
+             <p className="mb-0"  style={{fontSize:"2vw",fontFamily:"BankGothic",color:"#55BCD8  "}}
+          >{visible?"HIDE MY FREE TICKET":"CLAIM MY FREE TICKET"}</p>
+          </Button>
+          
         </div> 
 
+        <div className="position-absolute" style={{left:"6%",top:"68%"}}>
+
+        <small className="text-white">*No gas fee needed. The   free ticket is not a real NFT token. It will not grant your early access to the game.</small>
+
+           </div>
+
+        {visible?(
+        <div className="position-absolute" style={{left:"45%",top:"35%",width:"50%"}}>
+          <div className="postion-relative">
+          {/* <img src={freeticket} width="100%"/> */}
+          <img src={imgurl} width="100%"/>
+
+          </div>
+        </div> ):<></>}
+          {window.innerWidth>=1024?
         <Row className="align-items-center justify-content-center position-absolute vw-100"
-                style={{left:"0",top:"70%"}}
+                style={{left:"0",top:"70%",height:"30%"}}
                 >
-                  <Col className="text-center " lg="12"  >
+                  <Col className="text-center " style={{height:"100%"}} lg="12"  >
                     
                     
                     <EABtn />
                   </Col>
-                </Row>
-        {/* <Form role="form" onSubmit = {this.handleSubmit} className="position-absolute" style={{left:"10%",top:"30%"}}>
-                        <FormGroup className="mb-3">
-                            <Input placeholder="First Name" 
-                            type="text"
-                            name="firstname"
-                            value={this.state.firstname}
-                            onChange={this.handleChange}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            
-                            <Input
-                              placeholder="Last Name"
-                              type="text"
-                              name='lastname'
-                              value={this.state.lastname}
-                              onChange={this.handleChange}
-                            />
-                        </FormGroup>
-                        <div className="text-center">
-                          
-                          <div className="text-center">
-                            {(firstname || lastname)?<TicketModals name={firstname+" "+lastname}
-                           labeltext="Free Ticket!"
-                           imgsrc={freeticket}/>:<></>}
-                          
-                        </div>
-                        </div>
-                      </Form> */}
-
+                </Row>:<></>}
+                {visible?(<Canvas save={this.saveImgurl} 
+          width={width} 
+          height={height} 
+          imgSrc={freeticket}
+          font="40px BankGothic"
+          fillColor="#ffffff"
+          text={[[name,width*0.35+10,height*0.4,"left"]]
+          }
+     />):<></>}
+                
         </div>
+        
       </>
         )
 
