@@ -17,12 +17,15 @@ class EABtn extends React.Component{
       constructor(props){
         super(props)
         this.toggleModal=this.toggleModal.bind(this)
+        this.state={
+            ticketModal:false
+        }
       }
 
 
     render(){
         return (<>
-            <Button onClick={()=>this.toggleModal("ticketModal")} className="" style={{backgroundColor:"transparent",borderColor:"transparent",height:"50%",margin:"auto !important",top:"25%"}}><img src={url} style={{height:"100%"}}/>
+            <Button onClick={()=>this.toggleModal("ticketModal")} className="px-0 py-0 " style={{backgroundColor:"transparent",borderColor:"transparent",height:"50%",margin:"auto",top:"25%",width:"100%",alignItems:"center"}}><img src={url} style={{height:"100%"}}/>
                     </Button>   
                      <TicketModals 
                      toggle={this.toggleModal} 

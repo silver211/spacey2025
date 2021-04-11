@@ -39,8 +39,18 @@ import {
 import Canvas from "components/ETH/Canvas.js";
 import TransferNFT from "./TransferNFT.js";
 import SetName from "./SetName.js";
+import {SMTtestabi,
+  SMTtestaddr,
+  SPAYtestabi,
+  SPAYtestaddr,
+  SALEtestabi,
+  SALEtestaddr
+}     from "components/ETH/spay_testabi.js"
 const backgroudImg = require("assets/SpaceYAssets/SpaceTicket/004.png")
-const frame = require("assets/SpaceYAssets/intro/sayingFrame.png")
+const frame = require("assets/SpaceYAssets/P1/frame.png")
+const logo = require("assets/SpaceYAssets/P1/logo.png")
+const closebtnImg=require("assets/SpaceYAssets/P1/closebtn.png")
+
 
 
 class GetSpay extends React.Component {
@@ -52,14 +62,9 @@ class GetSpay extends React.Component {
   };
 
   componentDidMount(){
-    this.saveImgurl=this.saveImgurl.bind(this)
   }
 
-  saveImgurl(url){
-    this.setState({
-      imgurl:url
-    })
-  }
+  
 
   render() {
 
@@ -73,7 +78,7 @@ class GetSpay extends React.Component {
     const {imgurl} =this.state
     const {name,labeltext,imgsrc,type,tokenId,smtInst,account} = this.props
     const {isopen,toggle}=this.props
-    console.log(isopen, toggle)
+    // console.log(isopen, toggle)
     
     return (<Modal
       // className="modal-dialog-centered"
@@ -90,6 +95,17 @@ class GetSpay extends React.Component {
                       style={{width:"100%"}}/>
        
   <img src={frame} className="position-absolute" style={{left:"10%",top:0,width:"80%"}}/> 
+  <a  href="https://app.uniswap.org" target="_blank">
+  <img src={logo} className="position-absolute" style={{left:"25%",top:"30%",width:"50%"}}/>
+  </a>
+
+  <p className="text-white position-absolute text-center" style={{left:"0%",top:"50%",width:"100%",fontSize:"1.5vw"}}>Go to UniSwap and Purchase SPAY  </p>
+
+  <p className="text-white position-absolute text-center" style={{left:"0%",top:"55%",width:"100%",fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>{SPAYtestaddr}  </p>
+
+  {/* <img src={logo} className="position-absolute" style={{left:"25%",top:"30%",width:"50%"}}/>  */}
+  <Button onClick={()=>toggle("uniModal")} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
+
   {/* </div> */}
       {/* </div> */}
       {/* <div className="modal-footer align-item-center m-auto">

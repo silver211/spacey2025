@@ -64,8 +64,8 @@ constructor(prop){
       return
     }
     const {account}=this.state
+    const {toggleModal} = this.props
     if (account){
-      const {toggleModal} = this.props
       toggleModal("ticketModal")
       return
     }
@@ -87,7 +87,7 @@ constructor(prop){
     render(){
       const {smt,spay,account,ether} = this.state
       const {handleClick}= this
-      console.log(account)
+      // console.log(account)
       // if (account){
       //   return (<></>)
       // }
