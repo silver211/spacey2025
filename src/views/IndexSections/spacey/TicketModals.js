@@ -92,6 +92,7 @@ class TicketModals extends React.Component {
     const approve =  await spayInst.approve(SALEtestaddr,ethers.BigNumber.from(price))
     if(approve.hash){
       this.setState({
+        ...this.state,
         hash:approve.hash
       })
     }
@@ -112,17 +113,18 @@ class TicketModals extends React.Component {
     // const price = await saleInst.smtPrice()
     // const allowance = await spayInst.allowance(account,SALEtestaddr)
     let hash = Math.random().toString()
-    console.log("buy smt")
+    // console.log("buy smt")
     if (allowance.lt(price)){
       const approve =  await spayInst.approve(SALEtestaddr,ethers.BigNumber.from(price))
-      if(approve.hash){
-        this.setState({
-          hash:approve.hash
-        })
-      }
+      // if(approve.hash){
+      //   this.setState({
+      //     ...this.state,
+      //     hash:approve.hash
+      //   })
+      // }
     }
     else {
-      console.log(hash)
+      // console.log(hash)
       const buy = await saleInst.buySMT(hash).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
     }
 }
@@ -133,7 +135,7 @@ class TicketModals extends React.Component {
       return
     }
     const provider= new ethers.providers.Web3Provider(ethereum)
-    var {hash}=this.state
+    // var {hash}=this.state
     
     // console.log(provider)
     const spayInst = new ethers.Contract(SPAYtestaddr,SPAYtestabi,provider.getSigner());
@@ -171,13 +173,13 @@ class TicketModals extends React.Component {
       tokenLst.push(tokenInfo)
         
       }
-    if(hash){
-      const res = await provider.getTransaction(hash)
-      console.log(res)
-      if (res.blockHash!=null){
-          hash=undefined
-      }
-    }
+    // if(hash){
+    //   const res = await provider.getTransaction(hash)
+    //   console.log(res)
+    //   if (res.blockHash!=null){
+    //       hash=undefined
+    //   }
+    // }
     this.setState({
         ether:ethers.utils.formatEther(balance) ,
         account:accounts[0],
@@ -190,7 +192,7 @@ class TicketModals extends React.Component {
         provider:provider,
         price:price,
         stock:limit-saled,
-        hash:hash,
+        // hash:hash,
         smts:tokenLst,
 
     })
@@ -284,12 +286,19 @@ toggleModal(state) {
     const height=421
     const {imgurl,account,price,smts,allowance,hash,spay} =this.state
     const {isopen,toggle}=this.props
-    let disableApprove=true
-    let disableBuy=false
-    if (hash || (allowance && price && allowance.gte(price)) ){
+    let disableApprove=false
+    let disableBuy=true
+    // if (allowance || price){
+    // console.log(ethers.utils.formatEther(allowance),ethers.utils.formatEther(price))}
+    // else{
+    //   console.log(allowance,price )
+    // }
+    // console.log(hash)
+    if  (allowance && price && allowance.gte(price)) {
       disableApprove=true
       disableBuy=false
     }
+  
     // console.log(disableApprove,disableBuy)
     return (<Modal
       className="modal-dialog-centered"

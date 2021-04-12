@@ -17,9 +17,6 @@ class EABtn extends React.Component{
       constructor(props){
         super(props)
         this.toggleModal=this.toggleModal.bind(this)
-        this.state={
-            ticketModal:false
-        }
       }
 
 
