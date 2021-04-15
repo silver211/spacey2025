@@ -48,7 +48,7 @@ class SpaceYFooter extends React.Component {
                     <Button
                       className="btn-icon-only rounded-circle"
                       color="twitter"
-                      href="https://discord.gg/qRQdaaUm"
+                      href="https://discord.com/invite/cUeNS8UzGW"
                       id="tooltip475038074"
                       target="_blank"
                     >

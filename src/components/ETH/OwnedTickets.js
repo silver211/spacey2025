@@ -207,7 +207,7 @@ handleChange(e){
                           >
                             View My Ticket! 
                           </Button> */}
-                          <Col>
+                          {/* <Col>
                           <TicketModals
                            type="NFT"
                            name={smts[select].name}
@@ -217,7 +217,7 @@ handleChange(e){
                            smtInst={smtInst}
                            account = {account}
                           /></Col>
-                          
+                           */}
 
                         </Row>
                       </Form>):( <div className="text-center text-muted mb-4">

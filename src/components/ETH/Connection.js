@@ -92,7 +92,7 @@ componentDidUpdate(nextState,nextProps){
   componentDidMount(){
     const {ethereum} = window
     if (typeof ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
+        // console.log('MetaMask is installed!');
       }
     // console.log(window.ethereum)
     if (ethereum){

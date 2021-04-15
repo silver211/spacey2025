@@ -189,9 +189,9 @@ class FreeTicket extends React.Component {
                       className="position-relative vw-100 " 
                       src={backgroudImg 
                     }/>
-        <div className="position-absolute vw-100" style={{left:"0",top:"-3%"}}>
+        {/* <div className="position-absolute vw-100" style={{left:"0",top:"-3%"}}>
         <img width="100%" src={linkImg}/>
-        </div>
+        </div> */}
 
         
         

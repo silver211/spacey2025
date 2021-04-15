@@ -16,35 +16,12 @@
 
 */
 import React from "react";
-
-// reactstrap components
-// import { Container, Row } from "reactstrap";
-// nodejs library that concatenates classes
-import classnames from "classnames";
-
-// reactstrap components
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardImg,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import {connect} from "react-redux"
+import {update_provider,update_info} from "actions/index.js"
 
 
 
-// core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SpaceYNavbar from "components/Navbars/SpaceYNavbar.js";
-import CardsFooter from "components/Footers/CardsFooter.js";
 import SpaceYFooter from "components/Footers/SpaceYFooter.js";
 
 // index page sections
@@ -52,28 +29,58 @@ import Hero from "./IndexSections/spacey/Hero.js";
 import FreeTicket from "./IndexSections/spacey/FreeTicket.js";
 import About from "./IndexSections/spacey/About.js"
 import Partner from "./IndexSections/spacey/Partner.js"
-// import Hero from "./IndexSections/Hero.js";
 
-import CustomControls from "./IndexSections/CustomControls.js";
-import Menus from "./IndexSections/Menus.js";
-import LandingCg from "./CustomSections/LandingCg.js";
-import WhatIs from "./CustomSections/WhatIs.js";
-import Buildings from "./CustomSections/Buildings.js";
-import Alien from "./CustomSections/Alien.js";
-import Defend from "./CustomSections/Defend.js";
-// import Connection from "components/ETH/Connection.js";
-import Transaction from "components/ETH/Transaction.js";
+import GetSpay from "./IndexSections/spacey/GetSpay.js"
+import TicketModals from "./IndexSections/spacey/TicketModals.js"
+
+function mapDispatchToProps(dispatch){
+  return {
+    update_provider:()=>dispatch(update_provider()),
+    update_info:()=>dispatch(update_info())
 
 
+  }
+}
+
+function mapStateToProps(state){
+  const {ticketPrice,address,spayBalance,ea_open}=state
+  return {
+   price:ticketPrice,
+   address:address,
+   spayBalance:spayBalance,
+   isopen:ea_open
+  }
+}
 
 
-class SpaceY extends React.Component {
+
+class ConnectedSpaceY extends React.Component {
   state={}
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     this.refs.main.scrollTop = 0;
+
+    const {ethereum} = window
+      if (ethereum){
+        
+        const {update_provider,update_info} = this.props 
+        // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
+        // update_provider()
+        this.intervalProvider=setInterval(update_provider,5000)
+        this.intervalInfo=setInterval(update_info,5000)
+        this.intervals=[this.intervalInfo,this.intervalProvider]
+      }
   }
+
+  componentWillUnmount(){
+    if(this.intervals){
+      for( const interval of this.intervals){
+        clearInterval(interval)
+      }
+    }
+  }
+
 
 
   
@@ -100,6 +107,9 @@ class SpaceY extends React.Component {
             <About />
             <Partner/>
 
+            <GetSpay/>
+            <TicketModals/>
+
             
 
 
@@ -116,5 +126,5 @@ class SpaceY extends React.Component {
 
   }
 }
-
+const SpaceY = connect(mapStateToProps,mapDispatchToProps)(ConnectedSpaceY)
 export default SpaceY;

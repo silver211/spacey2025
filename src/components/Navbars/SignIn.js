@@ -1,44 +1,47 @@
 import React from 'react';
-import Web3 from 'web3';
 import {ethers} from "ethers";
-
+import {connect} from "react-redux"
+import {update_address,toggle_ea} from "actions/index.js"
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col,
-  Label,
+  
   NavItem,
   NavLink
 } from "reactstrap";
-// import {SMTtestabi,SMTtestaddr,SPAYtestabi,SPAYtestaddr}     from "./spay_testabi.js"
-class Connection extends React.Component {
+import { Redirect } from 'react-router';
+
+
+
+
+function mapDispatchToProps(dispatch){
+  return {
+    toggle_ea:()=>dispatch(toggle_ea()),
+    update_address:()=>dispatch(update_address())
+  }
+}
+
+function mapStateToProps(state){
+  const {address} = state
+  return {
+    address:address
+  }
+  
+}
+class ConnectedSignIn extends React.Component {
 
 
 constructor(prop){
     super(prop);
-    this.state={ether:"0",
-    spay:"0",
-    smt:"0"
+    this.state={
 }
     this.handleClick=this.handleClick.bind(this)
 
 }
 
- ethrequest(){
-    
-    this.ethereum.request({ method: 'eth_requestAccounts' });
- }
+shouldComponentUpdate(nextProps,nextState){
+  return this.state!=nextState || this.props !=nextProps
 
+}
+ 
   // componentDidUpdate(nextState,nextProps){
   //   return this.state!=nextState
   // }
@@ -61,17 +64,16 @@ constructor(prop){
     if (typeof ethereum == 'undefined') {
       // console.log('MetaMask is installed!');
       alert("Please get MetaMask！")
-      return
+      window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",'_blank ')
     }
-    const {account}=this.state
-    const {toggleModal} = this.props
-    if (account){
-      toggleModal("ticketModal")
-      return
+    const {toggle_ea,address,update_address} = this.props
+    if (address){
+      toggle_ea()
     }
-    if (ethereum){
-      this.getAccountInfo();
+    else{
+      update_address()
     }
+   
   }
 
 
@@ -86,6 +88,7 @@ constructor(prop){
  */
     render(){
       const {smt,spay,account,ether} = this.state
+      const {address}=this.props
       const {handleClick}= this
       // console.log(account)
       // if (account){
@@ -96,9 +99,9 @@ constructor(prop){
     <NavItem>
                     <NavLink
                       onClick={handleClick}  
-                      href="/#nav"
+                      href="/#"
 
-                    >{account?"MY NFT":"SIGN IN"}
+                    >{address?"MY NFT":"SIGN IN"}
                     </NavLink>
                     
                   </NavItem>
@@ -124,4 +127,5 @@ constructor(prop){
 //   web3: PropTypes.object
 // };
 
-export default Connection;
+const SignIn = connect(mapStateToProps,mapDispatchToProps)(ConnectedSignIn)
+export default SignIn;

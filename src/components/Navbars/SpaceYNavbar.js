@@ -39,16 +39,34 @@ import {
   UncontrolledTooltip,
   Modal
 } from "reactstrap";
+import {connect} from "react-redux"
+import {toggle_uni,
+toggle_ea} from "actions/index.js"
 
-import Connection from "./Connection.js"
+
+import SignIn from "./SignIn.js"
 import TicketModals from "views/IndexSections/spacey/TicketModals.js"
 import GetSpay from "views/IndexSections/spacey/GetSpay.js"
+
 
 import Canvas from "components/ETH/Canvas.js";
 const imgsrc=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_free.png")
 
+function mapDispatchToProps(dispatch){
+  return {
+    toggle_uni:()=>dispatch(toggle_uni()),
+    toggle_ea:()=>dispatch(toggle_ea()) 
+  }
+}
 
-class SpaceYNavbar extends React.Component {
+function mapStateToProps(state){
+  return {
+  }
+  
+}
+
+
+class ConnectedSpaceYNavbar extends React.Component {
   componentDidMount() {
 
     
@@ -81,6 +99,12 @@ class SpaceYNavbar extends React.Component {
       collapseClasses: ""
     });
   };
+
+
+  shouldComponentUpdate(nextProps,nextState){
+    return this.state!=nextState || this.props !=nextProps
+
+  }
   
 
   render() {
@@ -99,7 +123,7 @@ class SpaceYNavbar extends React.Component {
             expand="lg"
             id="navbar-main" id="nav"
           >
-            <Container>
+            <Container >
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
                 <img
                   alt="..."
@@ -169,11 +193,24 @@ class SpaceYNavbar extends React.Component {
                     
                   </NavItem>
 
+                  {/* <NavItem>
+                    <NavLink
+                      href="https://discord.com/invite/cUeNS8UzGW"  
+
+                    >
+                      JOIN DISCORD
+
+                    </NavLink>
+                    
+                  </NavItem> */}
+
                   {vw>=1024?
                   (<>
-                  <NavItem onClick={() => this.toggleModal("uniModal")} >
+                  {/* <NavItem onClick={() => this.toggleModal("uniModal")} > */}
+                  <NavItem onClick={() => this.props.toggle_uni()} >
+
                     <NavLink
-                      href="/#nav"    
+                      href="/#"    
 
                     >
                       GET SPAY
@@ -181,9 +218,11 @@ class SpaceYNavbar extends React.Component {
                     </NavLink>
                     
                   </NavItem>
-                  <NavItem onClick={() => this.toggleModal("ticketModal")}>
+                  {/* <NavItem onClick={() => this.toggleModal("ticketModal")}> */}
+                  <NavItem onClick={() => this.props.toggle_ea()}>
+
                     <NavLink
-                      href="/#nav"  
+                      href="/#"  
 
                     >
                       EARLY ACCESS
@@ -221,28 +260,18 @@ class SpaceYNavbar extends React.Component {
                     
                   </NavItem> */}
 
-                  <Connection 
-                  toggleModal={this.toggleModal}
+                  <SignIn
                   />
                 </Nav>:<></>}
               </UncontrolledCollapse>
             </Container>
           </Navbar>
-          <TicketModals 
-          toggle={this.toggleModal} 
-          isopen={this.state.ticketModal}
-          imgsrc={imgsrc}
-          />
-          <GetSpay
-          toggle={this.toggleModal} 
-          isopen={this.state.uniModal}
-          // imgsrc={imgsrc}
-          />
+          
 
         {/* </header> */}
       </>
     );
   }
 }
-
+const SpaceYNavbar=connect(mapStateToProps,mapDispatchToProps)(ConnectedSpaceYNavbar)
 export default SpaceYNavbar;

@@ -16,44 +16,47 @@
 
 */
 import React from "react";
-// nodejs library that concatenates classes
-import classnames from "classnames";
+
 
 // reactstrap components
 import {
   Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+  
   Modal,
-  Row,
-  Col
+  
 } from "reactstrap";
 
-import Canvas from "components/ETH/Canvas.js";
-import TransferNFT from "./TransferNFT.js";
-import SetName from "./SetName.js";
-import {SMTtestabi,
-  SMTtestaddr,
-  SPAYtestabi,
+
+import {
   SPAYtestaddr,
-  SALEtestabi,
-  SALEtestaddr
+  
 }     from "components/ETH/spay_testabi.js"
+
+import {connect} from "react-redux"
+import {toggle_uni} from "actions/index.js"
+
+
 const backgroudImg = require("assets/SpaceYAssets/SpaceTicket/004.png")
 const frame = require("assets/SpaceYAssets/P1/frame.png")
 const logo = require("assets/SpaceYAssets/P1/logo.png")
 const closebtnImg=require("assets/SpaceYAssets/P1/closebtn.png")
 
+function mapDispatchToProps(dispatch){
+  return {
+    toggle_uni:()=>dispatch(toggle_uni()) 
+  }
+}
+
+function mapStateToProps(state){
+  return {
+    isopen:state.uni_open
+  }
+  
+}
 
 
-class GetSpay extends React.Component {
+
+class ConnectedGetSpay extends React.Component {
   state = {};
   toggleModal = state => {
     this.setState({
@@ -64,7 +67,10 @@ class GetSpay extends React.Component {
   componentDidMount(){
   }
 
-  
+  shouldComponentUpdate(nextProps,nextState){
+    return this.state!=nextState || this.props !=nextProps
+
+  }
 
   render() {
 
@@ -77,15 +83,13 @@ class GetSpay extends React.Component {
     const height=421
     const {imgurl} =this.state
     const {name,labeltext,imgsrc,type,tokenId,smtInst,account} = this.props
-    const {isopen,toggle}=this.props
+    const {isopen,toggle_uni}=this.props
     // console.log(isopen, toggle)
     
     return (<Modal
-      // className="modal-dialog-centered"
       size="xl"
-      // isOpen={this.state.defaultModal}
       isOpen={isopen}
-      toggle={() => toggle("uniModal")}
+      toggle={() => toggle_uni()}
     >
       
         <img
@@ -103,31 +107,15 @@ class GetSpay extends React.Component {
 
   <p className="text-white position-absolute text-center" style={{left:"0%",top:"55%",width:"100%",fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>{SPAYtestaddr}  </p>
 
-  {/* <img src={logo} className="position-absolute" style={{left:"25%",top:"30%",width:"50%"}}/>  */}
-  <Button onClick={()=>toggle("uniModal")} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
+  <Button onClick={()=>toggle_uni()} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
 
-  {/* </div> */}
-      {/* </div> */}
-      {/* <div className="modal-footer align-item-center m-auto">
-        {type=="NFT"?
-        (<>
-        <SetName
-        tokenId={tokenId}
-        smtInst={smtInst}
-        account={account}
-        />
-        <TransferNFT 
-        tokenId={tokenId}
-        smtInst={smtInst}
-        account={account}
-        /></>)
-
-        :<></>}
-      </div> */}
+  
       
     </Modal>)
 
   }
 }
+
+const GetSpay=connect(mapStateToProps,mapDispatchToProps)(ConnectedGetSpay)
 
 export default GetSpay;
