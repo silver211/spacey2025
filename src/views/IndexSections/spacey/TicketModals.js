@@ -157,7 +157,7 @@ class ConnectedTicketModals extends React.Component {
     // const allowance = await spayInst.allowance(account,SALEtestaddr)
     let hash = Math.random().toString()
     let name="Mars Poineer"
-    let uri="https:spacey2025.com/ticket.json"
+    let uri="https://spacey2025.com/ticket.json"
     const buy = await saleInst.buySMT(hash,uri,name).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
 
     // console.log("buy smt")
