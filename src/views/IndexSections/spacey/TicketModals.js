@@ -55,6 +55,7 @@ import {SMTtestabi,
   SALEtestabi,
   SALEtestaddr
 }     from "components/ETH/spay_testabi.js"
+import {tokenHash} from "ticketInfo/hash.js"
 
 
 const backgroudImg = require("assets/SpaceYAssets/SpaceTicket/004.png")
@@ -145,7 +146,7 @@ class ConnectedTicketModals extends React.Component {
   async buySMT(){
     // const from_address = this.state.account
     // const {ethereum,web3} = window
-    const {spayInst,saleInst,allowance}=this.props
+    const {spayInst,saleInst,allowance,smtInst}=this.props
     // console.log(price)
     // console.log(ethers.utils.formatEther(allowance),ethers.utils.formatEther(price),allowance.gte(price))
     // const provider= new ethers.providers.Web3Provider(ethereum)
@@ -155,9 +156,14 @@ class ConnectedTicketModals extends React.Component {
     // const amount = "2025000000000000000000"
     // const price = await saleInst.smtPrice()
     // const allowance = await spayInst.allowance(account,SALEtestaddr)
-    let hash = Math.random().toString()
+    // let hash = Math.random().toString()
     let name="Mars Poineer"
-    let uri="https://spacey2025.com/ticket.json"
+    // let uri="https://spacey2025.com/ticket.json"
+    const nxtID=await smtInst.totalTokens().then(e=>{return e.toNumber()})+1 
+    // console.log(nxtID)
+    const uri = "https://spacey2025.com/ticket/ticket"+nxtID.toString()+".json"
+    const hash= tokenHash[nxtID]
+    // console.log(uri,hash)
     const buy = await saleInst.buySMT(hash,uri,name).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
 
     // console.log("buy smt")
