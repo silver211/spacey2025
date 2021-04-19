@@ -8,7 +8,7 @@ import {
   NavLink
 } from "reactstrap";
 import { Redirect } from 'react-router';
-
+import Info from "./Info.js"
 
 
 
@@ -42,37 +42,24 @@ shouldComponentUpdate(nextProps,nextState){
 
 }
  
-  // componentDidUpdate(nextState,nextProps){
-  //   return this.state!=nextState
-  // }
-
-  async getAccountInfo(){
-      const {ethereum} = window
-      const accounts = await ethereum.request({method:'eth_requestAccounts'})
-      if (accounts){
-        this.setState({
-          account:accounts[0]
-        })
-      }
-      // ethereum.enable()
-      
-  }
-
+  
   handleClick(){
     const {ethereum} = window
     // console.log("onclick")
     if (typeof ethereum == 'undefined') {
       // console.log('MetaMask is installed!');
-      alert("Please get MetaMask！")
+      alert("Please use Chrome and install MetaMask...")
       window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",'_blank ')
     }
     const {toggle_ea,address,update_address} = this.props
-    if (address){
-      toggle_ea()
-    }
-    else{
-      update_address()
-    }
+
+    // if (address){
+    //   toggle_ea()
+    // }
+    // else{
+    //   update_address()
+    // }
+    update_address()
    
   }
 
@@ -96,36 +83,24 @@ shouldComponentUpdate(nextProps,nextState){
       // }
 
   return (
-    <NavItem>
-                    <NavLink
-                      onClick={handleClick}  
-                      href="/#"
+    address?<Info />
+                :<NavItem>
+                <NavLink
+                  onClick={handleClick}  
+                  // href="/#"
 
-                    >{address?"MY NFT":"SIGN IN"}
-                    </NavLink>
-                    
-                  </NavItem>
+                >
+                  {/* {address?"MY NFT":"SIGN IN"} */}
+                  SIGN IN
+                </NavLink>
+                
+              </NavItem>
 
-/* <Button
-                      className=" btn-icon"
-                      onClick={handleClick}
-                    
-                      // href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-navbar"
-                      // target="_blank"
-                    >
-                      <span className="btn-inner--icon">
-                        <i className="fa fa-link mr-2" />
-                      </span>
-                      <span className="nav-link-inner--text ml-1">
-                        Connect
-                      </span>
-                    </Button> */
+
   )}
 }
 
-// Connection.contextTypes = {
-//   web3: PropTypes.object
-// };
+
 
 const SignIn = connect(mapStateToProps,mapDispatchToProps)(ConnectedSignIn)
 export default SignIn;

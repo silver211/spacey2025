@@ -48,7 +48,7 @@ class SpaceYFooter extends React.Component {
                     <Button
                       className="btn-icon-only rounded-circle"
                       color="twitter"
-                      href="https://discord.com/invite/cUeNS8UzGW"
+                      href=" https://discord.com/invite/cUeNS8UzGW"
                       id="tooltip475038074"
                       target="_blank"
                     >
@@ -87,20 +87,7 @@ class SpaceYFooter extends React.Component {
                     <UncontrolledTooltip delay={0} target="tooltip829810202">
                       Mail us
                     </UncontrolledTooltip>
-                    {/* <Button
-                      className="btn-icon-only rounded-circle ml-1"
-                      color="github"
-                      href="https://github.com/creativetimofficial"
-                      id="tooltip495507257"
-                      target="_blank"
-                    >
-                      <span className="btn-inner--icon">
-                        <i className="fa fa-github" />
-                      </span>
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip495507257">
-                      Star on Github
-                    </UncontrolledTooltip> */}
+                    
                   </Col>
                 </Row>
                 <hr />

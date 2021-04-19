@@ -20,7 +20,8 @@ import {ethers} from "ethers";
     ea_open:false,
     uni_open:false,
     allowance:0,
-    ticketCount:0
+    ticketCount:0,
+    inStock:100
 
   }
   
@@ -81,7 +82,8 @@ import {ethers} from "ethers";
             ...state,
             spayBalance:action.payload.spayBalance,
             allowance:action.payload.allowance,
-            ticketCount:action.payload.ticketCount
+            ticketCount:action.payload.ticketCount,
+            inStock:action.payload.inStock
         })
     }
 

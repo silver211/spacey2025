@@ -36,7 +36,7 @@ class Canvas extends React.Component {
       return(
         <div >
           <canvas ref="canvas"  width={width} height={height} style={{opacity:0,display:"none"}}/>
-           <img ref="image" src={imgSrc}  />
+           <img ref="image" crossorigin="anonymous"  src={imgSrc}  />
            {/* <QrCode   ref="qr"  value={newurl} /> */}
   
         </div>

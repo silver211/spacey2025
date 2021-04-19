@@ -45,22 +45,31 @@ export  function update_info(){
     return async function(dispatch){
         // return dispatch({type:"set_provider"})
         const {spayInst,smtInst,address} =store.getState()
-        if (spayInst!=null && smtInst!=null && address!=null){
-            try{
+        if (spayInst!=null && smtInst!=null ){
             // console.log("try")
+            const totalTokens = await smtInst.totalTokens().then(e=>{return e.toNumber()})
+            if(address!=null){
             const spayBalance=await spayInst.balanceOf(address)
             const allowance = await spayInst.allowance(address, SALEtestaddr)
             const ticketCount = await smtInst.balanceOf(address)
+            return dispatch({type:"update_info",payload:{
+                spayBalance:spayBalance,
+                allowance:allowance,
+                ticketCount:ticketCount,
+                inStock:100-totalTokens
+            }})
+            }
+            const {spayBalance,allowance,ticketCount} = store.getState()
             // console.log("update info")
             // console.log(ticketCount)
             return dispatch({type:"update_info",payload:{
                 spayBalance:spayBalance,
                 allowance:allowance,
-                ticketCount:ticketCount}})   
-        }
-            catch (e) {
-                console.log(e)
-            }}
+                ticketCount:ticketCount,
+                inStock:100-totalTokens
+            }})
+           }
+    
         else{
             return dispatch({type:""})
         }

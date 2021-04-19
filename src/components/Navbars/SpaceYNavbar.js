@@ -163,7 +163,7 @@ class ConnectedSpaceYNavbar extends React.Component {
 <Nav className="align-items-lg-center" navbar>
 <NavItem>
                     <NavLink
-                      href="/#home"
+                      href="/"
                     >
                       HOME
                     </NavLink>
@@ -210,7 +210,7 @@ class ConnectedSpaceYNavbar extends React.Component {
                   <NavItem onClick={() => this.props.toggle_uni()} >
 
                     <NavLink
-                      href="/#"    
+                      // href="/#"    
 
                     >
                       GET SPAY
@@ -222,7 +222,7 @@ class ConnectedSpaceYNavbar extends React.Component {
                   <NavItem onClick={() => this.props.toggle_ea()}>
 
                     <NavLink
-                      href="/#"  
+                      // href="/#"  
 
                     >
                       EARLY ACCESS
@@ -233,7 +233,7 @@ class ConnectedSpaceYNavbar extends React.Component {
 
                   <NavItem>
                     <NavLink
-                      href="/#nav"  
+                      href="/#/market#market"  
 
                     >
                       MARKET

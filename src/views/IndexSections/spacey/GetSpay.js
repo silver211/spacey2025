@@ -27,10 +27,7 @@ import {
 } from "reactstrap";
 
 
-import {
-  SPAYtestaddr,
-  
-}     from "components/ETH/spay_testabi.js"
+
 
 import {connect} from "react-redux"
 import {toggle_uni} from "actions/index.js"
@@ -105,7 +102,7 @@ class ConnectedGetSpay extends React.Component {
 
   <p className="text-white position-absolute text-center" style={{left:"0%",top:"50%",width:"100%",fontSize:"1.5vw"}}>Go to UniSwap and Purchase SPAY  </p>
 
-  <p className="text-white position-absolute text-center" style={{left:"0%",top:"55%",width:"100%",fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>{SPAYtestaddr}  </p>
+  <p className="text-white position-absolute text-center" style={{left:"0%",top:"55%",width:"100%",fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>0xaB5b3B546BF39E661bf92431a41ba302E15A6Af4  </p>
 
   <Button onClick={()=>toggle_uni()} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
 

@@ -26,18 +26,29 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 import "assets/SpaceYAssets/css/index.css";
 
 import SpaceY from "views/spacey.js";
+import Market from "views/market.js"
+import Ticket from "views/ticket.js"
 import Landing from "views/examples/Landing.js";
 import Aboard from "views/aboard.js";
 import MyTickets from "views/mytickets.js"
 import store from "store/index.js"
-
+import NFTTicket from "components/Details/nftticket.js"
 
 ReactDOM.render(
   <Provider store={store}>
   <HashRouter>
     <Switch>
-      <Route path="/"  render={props => <SpaceY {...props} />} />
-      
+      {/* <Route path="/index"  render={props => <SpaceY {...props} />} />
+       <Route path="/market"  render={props => <Market {...props} />} />  */}
+
+      <Route path="/market"  component={Market} />
+      <Route path="/ticket"  component={Ticket} />
+      <Route path="/nftticket/token/:tokenID" component ={NFTTicket} />
+
+
+
+      <Route path="/"   component={SpaceY} />
+
       {/* <Route path="/demo" exact render={props => <Index {...props} />}  />
       <Route
         path="/landing-page"
