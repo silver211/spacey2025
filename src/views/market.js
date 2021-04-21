@@ -83,7 +83,7 @@ class ConnectedMarket extends React.Component {
   
     return (
       <>
-                 <SpaceYNavbar />
+                 {/* <SpaceYNavbar /> */}
 
            <div ref="main">
 
@@ -95,7 +95,7 @@ class ConnectedMarket extends React.Component {
 
 
         </div>
-        <SpaceYFooter />
+        {/* <SpaceYFooter /> */}
 
       </>
     );

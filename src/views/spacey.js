@@ -98,7 +98,7 @@ class ConnectedSpaceY extends React.Component {
 
     return (
       <>
-                 <SpaceYNavbar />
+                 {/* <SpaceYNavbar /> */}
 
            <div ref="main">
 
@@ -107,7 +107,7 @@ class ConnectedSpaceY extends React.Component {
             <About />
             <Partner/>
 
-            <GetSpay/>
+            {/* <GetSpay/> */}
             <TicketModals/>
 
             
@@ -116,7 +116,7 @@ class ConnectedSpaceY extends React.Component {
 
 
         </div>
-        <SpaceYFooter />
+        {/* <SpaceYFooter /> */}
 
       </>
     );

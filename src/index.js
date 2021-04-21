@@ -34,9 +34,14 @@ import MyTickets from "views/mytickets.js"
 import store from "store/index.js"
 import NFTTicket from "components/Details/nftticket.js"
 
+import SpaceYNavbar from "components/Navbars/SpaceYNavbar.js"
+import SpaceYFooter from "components/Footers/SpaceYFooter.js"
+import GetSpay from "views/IndexSections/spacey/GetSpay.js"
+
 ReactDOM.render(
   <Provider store={store}>
   <HashRouter>
+    <SpaceYNavbar />
     <Switch>
       {/* <Route path="/index"  render={props => <SpaceY {...props} />} />
        <Route path="/market"  render={props => <Market {...props} />} />  */}
@@ -90,6 +95,9 @@ ReactDOM.render(
 
       <Redirect to="/" />
     </Switch>
+    <GetSpay/>
+
+    <SpaceYFooter />
   </HashRouter>
   </Provider>,
   document.getElementById("root")

@@ -49,7 +49,7 @@ shouldComponentUpdate(nextProps,nextState){
     if (typeof ethereum == 'undefined') {
       // console.log('MetaMask is installed!');
       alert("Please use Chrome and install MetaMask...")
-      window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",'_blank ')
+      window.open("https://metamask.io",'_blank ')
     }
     const {toggle_ea,address,update_address} = this.props
 

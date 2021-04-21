@@ -21,6 +21,8 @@ import React from "react";
 // reactstrap components
 import {
   Button,
+  Container,
+  Row,
   
   Modal,
   
@@ -81,13 +83,11 @@ class ConnectedGetSpay extends React.Component {
     const {imgurl} =this.state
     const {name,labeltext,imgsrc,type,tokenId,smtInst,account} = this.props
     const {isopen,toggle_uni}=this.props
-    // console.log(isopen, toggle)
     
     return (<Modal
       size="xl"
       isOpen={isopen}
-      toggle={() => toggle_uni()}
-    >
+      toggle={() => toggle_uni()}>
       
         <img
                       alt="..."
@@ -97,12 +97,21 @@ class ConnectedGetSpay extends React.Component {
        
   <img src={frame} className="position-absolute" style={{left:"10%",top:0,width:"80%"}}/> 
   <a  href="https://app.uniswap.org" target="_blank">
-  <img src={logo} className="position-absolute" style={{left:"25%",top:"30%",width:"50%"}}/>
+
+  <Button style={{left:"25%",top:"30%",width:"50%",position:"absolute",backgroundColor:"transparent",borderColor:"transparent"}}>
+  <img src={logo} className="position-relative" style={{width:"100%"}} /></Button>
+
   </a>
 
-  <p className="text-white position-absolute text-center" style={{left:"0%",top:"50%",width:"100%",fontSize:"1.5vw"}}>Go to UniSwap and Purchase SPAY  </p>
+<Container className="position-absolute text-center" style={{top:"50%",left:"10%",width:"80%"}}>
+  <Row className="text-center">
+    <p className="text-white text-center mx-auto" style={{fontSize:"1.5vw"}}>Go to UniSwap and Purchase SPAY</p>
 
-  <p className="text-white position-absolute text-center" style={{left:"0%",top:"55%",width:"100%",fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>0xaB5b3B546BF39E661bf92431a41ba302E15A6Af4  </p>
+  </Row>
+  <Row>
+  <p className="text-white text-center mx-auto" style={{fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>0x58FaD9E3C3AE54c9BA98c3f0E4bF88aB3E8Cf3c5</p>
+</Row>
+</Container>
 
   <Button onClick={()=>toggle_uni()} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
 

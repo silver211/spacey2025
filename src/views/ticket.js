@@ -19,7 +19,7 @@ import React from "react";
 import {connect} from "react-redux"
 import {update_provider,update_info} from "actions/index.js"
 import {ethers} from "ethers";
-
+import {Redirect} from "react-router-dom"
 
 
 import SpaceYNavbar from "components/Navbars/SpaceYNavbar.js";
@@ -72,7 +72,7 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state){
-  const {ticketPrice,address,spayBalance,ea_open,inStock,spayInst,smtInst,saleInst,allowance}=state
+  const {ticketPrice,address,spayBalance,ea_open,inStock,spayInst,smtInst,saleInst,allowance,provider}=state
   return {
    price:ticketPrice,
    address:address,
@@ -82,7 +82,8 @@ function mapStateToProps(state){
    spayInst:spayInst,
    smtInst:smtInst,
    saleInst:saleInst,
-   allowance:allowance
+   allowance:allowance,
+   provider:provider
   }
 }
 
@@ -99,11 +100,13 @@ class ConnectedTicket extends React.Component {
       if (ethereum){
         
         const {update_provider,update_info} = this.props 
+        const {checkTransaction}=this
         // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
         // update_provider()
         this.intervalProvider=setInterval(update_provider,5000)
         this.intervalInfo=setInterval(update_info,5000)
-        this.intervals=[this.intervalInfo,this.intervalProvider]
+        this.intervalTransaction=setInterval(checkTransaction,5000)
+        this.intervals=[this.intervalInfo,this.intervalProvider,this.intervalTransaction]
       }
   }
 
@@ -122,6 +125,30 @@ class ConnectedTicket extends React.Component {
 
   }
   
+  async checkTransaction(){
+    const {approveHash,buyHash} = this.state
+    const {provider} = this.props
+    let approveBlockHash=undefined
+    let buyBlockHash=undefined
+    if (provider){
+        if (approveHash){
+        approveBlockHash = await provider.getTransaction(approveHash).then(e=>{return e.blockHash})
+      }
+      if (buyHash){
+         buyBlockHash = await provider.getTransaction(buyHash).then(e=>{return e.blockHash})
+      }
+        this.setState({
+          ...this.state,
+          approveBlockHash:approveBlockHash,
+          buyBlockHash:buyBlockHash
+        })
+      }
+      
+      
+    
+    
+    
+  }
 
   async buySMT(){
     const {spayInst,saleInst,allowance,smtInst}=this.props
@@ -133,7 +160,18 @@ class ConnectedTicket extends React.Component {
     const uri = "https://spacey2025.com/ticket/ticket"+nxtID.toString()+".json"
     const hash= tokenHash[nxtID]
     // console.log(uri,hash)
-    const buy = await saleInst.buySMT(hash,uri,name).then(e=>{console.log(e);alert("You're all set.Please wait for pending transaction")},f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+    const buy = await saleInst.buySMT(hash,uri,name).
+    then(e=>{console.log(e);
+      alert("You're all set.Please wait for pending transaction");
+      return e;
+    },
+    f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+    if (buy.hash){
+      this.setState({
+        ...this.state,
+        buyHash:buy.hash
+      })
+    }
   
     
   }
@@ -145,7 +183,7 @@ class ConnectedTicket extends React.Component {
       alert("Approve succeed!Please wait for processing...")
       this.setState({
         ...this.state,
-        hash:approve.hash
+        approveHash:approve.hash
       })
     }
     else{
@@ -159,6 +197,7 @@ class ConnectedTicket extends React.Component {
     super(props)
     this.buySMT=this.buySMT.bind(this);
     this.approve = this.approve.bind(this)
+    this.checkTransaction=this.checkTransaction.bind(this)
     // this.getAccountInfo=this.getAccountInfo.bind(this)
     this.state={
     }
@@ -180,6 +219,13 @@ class ConnectedTicket extends React.Component {
     // )
 
     const {address,allowance,inStock}=this.props
+    const {approveBlockhash,buyBlockHash}=this.state
+    
+    // console.log(hash,blockHash)
+    if (buyBlockHash!=undefined){
+      alert("Congraluation! Trade succeed,now you have one new SMT!")
+      return <Redirect to="/market"/>
+        }
 
     let disableApprove=true
     let disableBuy=true
@@ -198,13 +244,13 @@ class ConnectedTicket extends React.Component {
 
     return (
       <div className="bg-dark">
-                 <SpaceYNavbar />
+                 {/* <SpaceYNavbar /> */}
 
            <div ref="main">
 
            
 
-             <GetSpay/>
+             {/* <GetSpay/> */}
              <Container >
              <Row >
                
@@ -244,7 +290,7 @@ class ConnectedTicket extends React.Component {
 
 
         </div>
-        <SpaceYFooter />
+        {/* <SpaceYFooter /> */}
 
       </div>
     );
