@@ -6,6 +6,9 @@ from "reactstrap"
 import {connect} from "react-redux"
 import {
 toggle_ea} from "actions/index.js"
+import { Redirect } from "react-router"
+import {Link} from "react-router-dom"
+
 
 const url = require("assets/SpaceYAssets/btn/earlyaccess.png")
 
@@ -36,10 +39,10 @@ class ConnectedEABtn extends React.Component{
 
 
     render(){
-        return (<>
+        return (<Link to="/market">
             <Button  className="px-0 py-0 " style={{backgroundColor:"transparent",borderColor:"transparent",height:"50%",margin:"auto",top:"25%",width:"100%",alignItems:"center"}}><img src={url} style={{height:"100%"}}/>
             </Button>   
-                      </>
+                      </Link>
         )
     }
 }

@@ -94,7 +94,7 @@ class Partner extends React.Component {
                   <Col className="text-center " style={{height:"100%"}} lg="12"  >
                     
                     
-                    <EABtn />
+                    {/* <EABtn /> */}
                   </Col>
                 </Row>:<></>}
         </div>

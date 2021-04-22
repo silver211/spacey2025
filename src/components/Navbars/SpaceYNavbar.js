@@ -123,7 +123,7 @@ class ConnectedSpaceYNavbar extends React.Component {
             expand="lg"
             id="navbar-main" id="nav"
           >
-            <Container >
+            <Container style={{maxWidth:"1920px"}}>
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
                 <img
                   alt="..."
@@ -219,7 +219,7 @@ class ConnectedSpaceYNavbar extends React.Component {
                     
                   </NavItem>
                   {/* <NavItem onClick={() => this.toggleModal("ticketModal")}> */}
-                  <NavItem onClick={() => this.props.toggle_ea()}>
+                  {/* <NavItem onClick={() => this.props.toggle_ea()}>
 
                     <NavLink
                       // href="/#"  
@@ -229,7 +229,7 @@ class ConnectedSpaceYNavbar extends React.Component {
 
                     </NavLink>
                     
-                  </NavItem>
+                  </NavItem> */}
 
                   <NavItem>
                     <NavLink

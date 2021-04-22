@@ -73,7 +73,7 @@ class FreeTicket extends React.Component {
 
   handleChange(e){
       // const v =e.target.value
-      const v= e.target.value.replace(/[^(a-zA-Z)]/g, '').substring(0,10)
+      const v= e.target.value.replace(/[^(a-zA-Z )]/g, '').substring(0,20)
       this.setState({
           ...this.state,
           [e.target.name]:v.toUpperCase() 
@@ -81,11 +81,11 @@ class FreeTicket extends React.Component {
   }
 
   handleSubmit(e){
-      const {firstname,lastname,visible} = this.state
+      const {firstname,lastname,visible,name} = this.state
       e.preventDefault();
     //   alert(this.state.firstname+" "+ this.state.lastname)
     //   console.log(this.state.imgurl )
-      if (firstname == "" || lastname ==""){
+      if (name == ""){
           return
       }
       // const name = firstname+" "+lastname
@@ -95,13 +95,12 @@ class FreeTicket extends React.Component {
           ...this.state,
           visible:!visible
       })
-      console.log(visible)
    
   }
 
   
   render() {
-      const {freeticket,firstname,lastname,visible,imgurl} = this.state
+      const {freeticket,firstname,lastname,visible,imgurl,email,name} = this.state
       const {handleChange,handleSubmit} = this
       const width_o = 2560
       const height_o = 1497
@@ -110,7 +109,6 @@ class FreeTicket extends React.Component {
       // const height = height_o*ratio
       const width=1016
       const height=421
-      const name = firstname+" "+lastname
 //     return (
 //       <>
 //         <main ref="main" >
@@ -189,9 +187,7 @@ class FreeTicket extends React.Component {
                       className="position-relative vw-100 " 
                       src={backgroudImg 
                     }/>
-        {/* <div className="position-absolute vw-100" style={{left:"0",top:"-3%"}}>
-        <img width="100%" src={linkImg}/>
-        </div> */}
+        
 
         
         
@@ -220,16 +216,16 @@ class FreeTicket extends React.Component {
           <input style={{
             left:"8%",top:"18%",width:"90%",height:"18%",position:"absolute",  
             fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
-          placeholder="FIRST NAME" name="firstname" value={firstname} onChange={handleChange } autoComplete="off"></input>
-          <input style={{
+          placeholder="NAME" name="name" value={name} onChange={handleChange } autoComplete="off"></input>
+          <input type="email" style={{
             left:"8%",top:"45%",width:"90%",height:"18%",position:"absolute",  
             fontSize:"2vw",backgroundColor:"transparent",borderColor:"transparent",color:"#55DCD8",fontFamily:"BankGothic"}}
-          placeholder="LAST NAME" name="lastname" value={lastname} onChange={handleChange } autoComplete="off"></input>
+          placeholder="EMAIL" name="email" value={email} autoComplete="off"></input>
           <Button  className="py-0 text-left " style={{left:"8%",top:"70%",width:"90%",height:"18%",position:"absolute",backgroundColor:"transparent",borderColor:"transparent",paddingLeft:"2%"
            }}
            onClick={handleSubmit}
            >
-             <p className="mb-0"  style={{fontSize:"2vw",fontFamily:"BankGothic",color:"#55BCD8  "}}
+             <p className="mb-0"  style={{fontSize:"2vw",fontFamily:"BankGothic",color:"#55BCD8"}}
           >{visible?"HIDE MY FREE TICKET":"CLAIM MY FREE TICKET"}</p>
           </Button>
         </div> 
@@ -270,7 +266,7 @@ class FreeTicket extends React.Component {
                   <Col className="text-center " style={{height:"100%"}} lg="12"  >
                     
                     
-                    <EABtn />
+                    {/* <EABtn /> */}
                   </Col>
                 </Row>:<></>}
                 {visible?(<Canvas save={this.saveImgurl} 
