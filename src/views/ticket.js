@@ -163,12 +163,12 @@ class ConnectedTicket extends React.Component {
     const uri = "https://spacey2025.com/ticket/ticket"+nxtID.toString()+".json"
     const hash= tokenHash[nxtID]
     // console.log(uri,hash)
-    const buy = await saleInst.buySMT(hash,uri,name).
+    const buy = await saleInst.buySMT(hash,uri,name,nxtID).
     then(e=>{console.log(e);
       alert("You're all set.Please wait for pending transaction");
       return e;
     },
-    f=>{console.log(f);alert("Buy SMT failed.Try again later")})
+    f=>{console.log(f,typeof(f));alert("Buy SMT failed.Try again later");return f;})
     if (buy.hash){
       this.setState({
         ...this.state,
@@ -214,8 +214,9 @@ class ConnectedTicket extends React.Component {
 
     const {address,allowance,inStock}=this.props
     const {approveBlockhash,buyBlockHash}=this.state
+
     
-    // console.log(hash,blockHash)
+    console.log(address,allowance)
     if (buyBlockHash!=undefined){
       alert("Congraluation! Trade succeed,now you have one new SMT!")
       return <Redirect to="/market"/>

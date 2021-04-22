@@ -3,13 +3,18 @@ import {ethers} from "ethers";
 import {connect} from "react-redux"
 import {update_address,toggle_uni} from "actions/index.js"
 import {
-  
+  Container,
+  Row,
+  Col,
   NavItem,
   NavLink
 } from "reactstrap";
 import { Redirect} from 'react-router';
 import {Link} from "react-router-dom"
 
+const spaceYlogo=require("assets/SpaceYAssets/Game Logo/spaceY_1_dark.png")
+const limitTag = require("assets/SpaceYAssets/buyticket/Limited_Tag.png")
+const tokenLogo = require("assets/SpaceYAssets/Token Logo/SPAY_token_s_white_256_256.png")
 
 
 function mapDispatchToProps(dispatch){
@@ -77,7 +82,9 @@ shouldComponentUpdate(nextProps,nextState){
     render(){
         const {inStock}=this.props
 
-  return (<Link to="/ticket" className="text-white">
+  return (
+  <Link to="/ticket" className="text-white">
+    <div className="position-relative">
         <img
                       alt="..."
                       className="position-relative" 
@@ -85,14 +92,43 @@ shouldComponentUpdate(nextProps,nextState){
                     }
                     style={{width:"100%"}}
                     />
-                    <p className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw"}}>Price:2025 SPAY</p>
-                    <p className="position-absolute" style={{top:"70%",left:"15%",fontSize:"1vw"}}>Instock:{inStock} SMT</p>
-                    <p className="position-absolute" style={{top:"75%",left:"15%",fontSize:"1vw",width:"80%"}}>Early access to the Space Y 2025 NFT tower defense game.</p>
+                    {/* <p className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw"}}>Price:2025 SPAY</p> */}
+                    
+                    <img src={spaceYlogo} className="position-absolute" style={{top:"65%",left:"15%",width:"25%"}} />
+                    <p className="text-white position-absolute" style={{fontFamily:"Arial Regular",fontSize:"1vw",top:"70%",left:"15%"}}>Boarding Pass</p>
+                        <p className="text-white position-absolute " style={{top:"70%",left:"60%",display:"flex",fontSize:"1vw"}}><img src={tokenLogo} style={{display:"inline-block",height:"1rem",margin:"auto"}}/>
+2025.000</p>
+<img className="text-white position-absolute"  src ={limitTag}style={{top:"80%",left:"15%",width:"20%"}} />
+<p className="text-white position-absolute " style={{top:"80%",left:"50%",display:"flex",fontSize:"1vw"}}>
+{inStock} SMT in stock</p>
+
+                                        {/* <Container style={{fontFamily:"Arial Regular",position:"absolute",top:"70%",left:"15%",width:"80%",paddingLeft:"0"}} >
+                      <Row style={{marginLeft:"0"}}>
+                        <Col style={{paddingLeft:"0"}}><p className="text-white" style={{fontFamily:"Arial Regular",fontSize:"1vw"}}>Boarding Pass</p></Col>
+                        <Col> 
+                        <Row>
+                        <img src={tokenLogo} style={{display:"inline-block",height:"1rem"}}/>
+                        <p className="text-right">2025.000</p>
+                        </Row>
+            
+</Col>
+                      </Row>
+                      <Row style={{marginLeft:"0"}}>
+                        <Col ><Row>
+                        <img src={limitTag} style={{display:"",height:"2%"}}/>
+                        
+                        </Row></Col>
+                        <Col> 
+                        
+            
+</Col>
+                      </Row>
+                    </Container> */}
 
 
 
         
-              
+         </div>     
   </Link>
 
 

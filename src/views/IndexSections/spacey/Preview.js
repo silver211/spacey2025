@@ -44,13 +44,14 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state){
-  const {ticketPrice,address,spayBalance,ea_open,ticketCount}=state
+  const {ticketPrice,address,spayBalance,ea_open,ticketCount,tokens}=state
   return {
    price:ticketPrice,
    address:address,
    spayBalance:spayBalance,
    isopen:ea_open,
-   ticketCount:ticketCount
+   ticketCount:ticketCount,
+   tokens:tokens
   }
 }
 
@@ -83,7 +84,15 @@ class ConnectedPreview extends React.Component {
 
   
   render() {
-      const {address,spayBalance,ticketCount} = this.props
+      const {address,spayBalance,ticketCount,tokens} = this.props
+      let assets=[]
+      for (const token of tokens){
+        assets.push(
+          <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+<NFTTicket tokenID={token}/>
+
+        </item>)
+      }
       return (<>
         <div className="position-relative" >
         <img
@@ -120,7 +129,7 @@ class ConnectedPreview extends React.Component {
                   <Col className="text-left text-white" lg="12"  >
                     
                     <p  style={{fontFamily:"BankGothic",fontSize:"2.5vw"}} id="mynft">
-                      MY NFT
+                      MY ASSETS
                      </p>                    
                   </Col>
                 </Row>
@@ -143,33 +152,14 @@ class ConnectedPreview extends React.Component {
           
           </Row>:<></>} */}
           <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll",position:"absolute"}}>
-            <li style={{ overflowX:"auto",listStyle:"none",whiteSpace:"nowrap",width: "auto" }}>
-            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item>
+            <li style={{ overflowX:"auto",listStyle:"none",whiteSpace:"nowrap",width: "100%" }}>
+            
+            
 
-            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item>
-            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item>
-            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item>
-            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
-              <NFTTicket />
-            </item>
+
+
+
+            {assets}
             </li>
           </Row>
           

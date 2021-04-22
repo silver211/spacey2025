@@ -11,7 +11,9 @@ import {
 import { Redirect } from 'react-router';
 import {Link} from "react-router-dom"
 
-
+const spaceYlogo=require("assets/SpaceYAssets/Game Logo/spaceY_1_dark.png")
+const limitTag = require("assets/SpaceYAssets/buyticket/Limited_Tag.png")
+const tokenLogo = require("assets/SpaceYAssets/Token Logo/SPAY_token_s_white_256_256.png")
 
 function mapDispatchToProps(dispatch){
   return {
@@ -78,8 +80,9 @@ shouldComponentUpdate(nextProps,nextState){
     render(){
         const {inStock,tokenID}=this.props
 
-  return (<Link to={"/nftticket/token/"+tokenID} className="text-white ">
-    {/* <div className="position-relative"> */}
+  return (
+  // <Link to={"/nftticket/token/"+tokenID} className="text-white ">
+    <div className="position-relative">
         <img
                       alt="..."
                       className="position-relative" 
@@ -87,26 +90,15 @@ shouldComponentUpdate(nextProps,nextState){
                     }
                     style={{width:"100%"}}
                     />
-                    {/* <Container className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw",width:"50%"}}>
-                      <Row>                    <p  style={{fontSize:"0.8vw"}}>Price:2025 SPAY</p>
-</Row>
-<Row>                    <p  style={{fontSize:"0.8vw"}}>TokenID:{tokenID}</p>
-</Row>
-<Row>                    <p  style={{fontSize:"0.8vw"}}>Early access to the Space Y 2025 NFT tower defense game.</p>
-</Row>
-
-                      </Container> */}
-                    <p className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw"}}>Price:2025 SPAY</p>
-                    <p className="position-absolute" style={{top:"70%",left:"15%",fontSize:"1vw"}}>TokenID:{tokenID}</p>
-                    <p className="position-absolute" style={{top:"75%",left:"15%",fontSize:"1vw",width:"80%",whiteSpace:"normal "}}>
-                    Early access to the Space Y 2025 NFT tower defense game.</p>
-
-                    {/* <p className="position-absolute" style={{top:"55%",left:"15%"}}>Price:2025 SPAY</p> */}
-
-
-        
-              {/* </div> */}
-  </Link>
+                    <img src={spaceYlogo} className="position-absolute" style={{top:"65%",left:"15%",width:"25%"}} />
+                    <p className="text-white position-absolute" style={{fontFamily:"Arial Regular",fontSize:"1vw",top:"70%",left:"15%"}}>Boarding Pass</p>
+                        
+<img className="text-white position-absolute"  src ={limitTag}style={{top:"80%",left:"15%",width:"20%"}} />
+<p className="text-white position-absolute " style={{top:"80%",left:"60%",display:"flex",fontSize:"1vw",fontFamily:"Arial Regular"}}>
+{"NO."+tokenID}</p>
+</div>
+                    
+  // {/* </Link> */}
 
 
   )}

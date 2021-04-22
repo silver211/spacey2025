@@ -40,7 +40,6 @@ export  function update_address(){
 }
 
 export  function update_info(){
-    // console.log(store.getState().provider)
 
     return async function(dispatch){
         // return dispatch({type:"set_provider"})
@@ -78,6 +77,18 @@ export  function update_info(){
     }
 }
 
+export function update_tokens(){
+    return async function(dispatch){
+        const {smtInst,address} =store.getState()
+        if (smtInst!==null && address!==null){
+            const tokens=await smtInst.tokensOfOwner(address)
+            return dispatch({type:"update_tokens",payload:{
+                tokens:tokens
+            }})
+        }
+    }
+    
+}
 
 
 

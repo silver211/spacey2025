@@ -209,9 +209,9 @@ class ConnectedNFTTicket extends React.Component {
     const {tokenID} =this.props.match.params
     const {owner,imgurl,name,isopen} = this.state
     const {getOwner,saveImgurl,getName,toggleModal} = this
-    if (tokenID>100-inStock || tokenID<=0 || isNaN(tokenID)){
-      return <Redirect to="/market" />
-    }
+    // if (tokenID>100-inStock || tokenID<=0 || isNaN(tokenID)){
+    //   return <Redirect to="/market" />
+    // }
     const isOwner=address && owner && owner==address
     const imgsrc= "https://gateway.pinata.cloud/ipfs/"+tokenHash[tokenID]
     getOwner()
@@ -233,7 +233,7 @@ class ConnectedNFTTicket extends React.Component {
 
            
 
-             <GetSpay/>
+             {/* <GetSpay/> */}
              <TransferModal 
              isopen={isopen}
              toggleModal={toggleModal}

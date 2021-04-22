@@ -34,18 +34,23 @@ class SpaceYFooter extends React.Component {
     return (
       <>
         <footer className=" footer bg-dark">
-          <Container>
-                <Row className=" row-grid align-items-center mb-5">
-                  <Col lg="6">
-                    <h3 className=" text-white font-weight-light mb-2">
-                      Thank you for supporting us!
-                    </h3>
-                    <h4 className=" mb-0 font-weight-light text-white">
-                      Let's get in touch on any of these platforms.
-                    </h4>
-                  </Col>
-                  <Col className="text-lg-center btn-wrapper" lg="6">
-                    <Button
+          <Container >
+                
+            <Row className=" align-items-center justify-content-md-between">
+              <Col md="6" className="text-white ">
+                <div className=" copyright">
+                  © {new Date().getFullYear()}{" "}
+                  <a
+                    // href="http://www.blockfish.io"
+                    // target="_blank"
+                  >
+                    spacey2025.com
+                  </a>
+                  
+                </div>
+              </Col>
+              <Col md="6" className="text-right">
+              <Button
                       className="btn-icon-only rounded-circle"
                       color="twitter"
                       href=" https://discord.com/invite/cUeNS8UzGW"
@@ -87,25 +92,7 @@ class SpaceYFooter extends React.Component {
                     <UncontrolledTooltip delay={0} target="tooltip829810202">
                       Mail us
                     </UncontrolledTooltip>
-                    
-                  </Col>
-                </Row>
-                <hr />
-            <Row className=" align-items-center justify-content-md-between">
-              <Col md="6" className="text-white ">
-                <div className=" copyright">
-                  © {new Date().getFullYear()}{" "}
-                  <a
-                    // href="http://www.blockfish.io"
-                    // target="_blank"
-                  >
-                    spacey2025.com
-                  </a>
-                  
-                </div>
-              </Col>
-              <Col md="6">
-                <Nav className=" nav-footer justify-content-end">
+                {/* <Nav className=" nav-footer justify-content-end">
                   <NavItem>
                     <NavLink
                       href="http://www.blockfish.io"
@@ -122,23 +109,8 @@ class SpaceYFooter extends React.Component {
                       About Us
                     </NavLink>
                   </NavItem>
-                  {/* <NavItem>
-                    <NavLink
-                      href="http://blog.creative-tim.com?ref=adsr-footer"
-                      target="_blank"
-                    >
-                      Blog
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      href="https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md"
-                      target="_blank"
-                    >
-                      MIT License
-                    </NavLink>
-                  </NavItem> */}
-                </Nav>
+                  
+                </Nav> */}
               </Col>
             </Row>
           </Container>

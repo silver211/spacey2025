@@ -21,7 +21,8 @@ import {ethers} from "ethers";
     uni_open:false,
     allowance:0,
     ticketCount:0,
-    inStock:100
+    inStock:100,
+    tokens:[]
 
   }
   
@@ -84,6 +85,12 @@ import {ethers} from "ethers";
             allowance:action.payload.allowance,
             ticketCount:action.payload.ticketCount,
             inStock:action.payload.inStock
+        })
+    }
+    case "update_tokens":{
+        return Object.assign({},state,{
+            ...state,
+            tokens:action.payload.tokens
         })
     }
 

@@ -17,7 +17,7 @@
 */
 import React from "react";
 import {connect} from "react-redux"
-import {update_provider,update_info} from "actions/index.js"
+import {update_provider,update_info,update_tokens} from "actions/index.js"
 
 
 
@@ -31,7 +31,8 @@ import Preview from "views/IndexSections/spacey/Preview.js"
 function mapDispatchToProps(dispatch){
   return {
     update_provider:()=>dispatch(update_provider()),
-    update_info:()=>dispatch(update_info())
+    update_info:()=>dispatch(update_info()),
+    update_tokens:()=>dispatch(update_tokens())
 
 
   }
@@ -59,12 +60,13 @@ class ConnectedMarket extends React.Component {
     const {ethereum} = window
       if (ethereum){
         
-        const {update_provider,update_info} = this.props 
+        const {update_provider,update_info,update_tokens} = this.props 
         // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
         // update_provider()
         this.intervalProvider=setInterval(update_provider,5000)
         this.intervalInfo=setInterval(update_info,5000)
-        this.intervals=[this.intervalInfo,this.intervalProvider]
+        this.intervalTokens=setInterval(update_tokens,5000)
+        this.intervals=[this.intervalInfo,this.intervalProvider,this.intervalTokens]
       }
   }
 
@@ -88,7 +90,7 @@ class ConnectedMarket extends React.Component {
            <div ref="main" >
 
              <Preview />
-             <GetSpay/>
+             {/* <GetSpay/> */}
 
 
 
