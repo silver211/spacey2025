@@ -129,21 +129,21 @@ class ConnectedTicket extends React.Component {
   }
   
   async checkTransaction(){
-    const {approveHash,buyHash} = this.state
+    const {approveHash,buyHash,approveBlockHash,buyBlockHash} = this.state
     const {provider} = this.props
-    let approveBlockHash=undefined
-    let buyBlockHash=undefined
+    let newapproveBlockHash=undefined
+    let newbuyBlockHash=undefined
     if (provider){
-        if (approveHash){
-        approveBlockHash = await provider.getTransaction(approveHash).then(e=>{return e.blockHash})
+        if (approveHash ){
+        newapproveBlockHash = await provider.getTransaction(approveHash).then(e=>{console.log(e);return e.blockHash})
       }
       if (buyHash){
-         buyBlockHash = await provider.getTransaction(buyHash).then(e=>{return e.blockHash})
+        newbuyBlockHash = await provider.getTransaction(buyHash).then(e=>{return e.blockHash})
       }
-        this.setState({
+              this.setState({
           ...this.state,
-          approveBlockHash:approveBlockHash,
-          buyBlockHash:buyBlockHash
+          approveBlockHash:approveBlockHash?approveBlockHash:newapproveBlockHash,
+          buyBlockHash:buyBlockHash?buyBlockHash:newbuyBlockHash
         })
       }
       
@@ -213,10 +213,8 @@ class ConnectedTicket extends React.Component {
     
 
     const {address,allowance,inStock}=this.props
-    const {approveBlockhash,buyBlockHash}=this.state
+    const {approveBlockHash,buyBlockHash,approveHash,buyHash}=this.state
 
-    
-    console.log(address,allowance)
     if (buyBlockHash!=undefined){
       alert("Congraluation! Trade succeed,now you have one new SMT!")
       return <Redirect to="/market"/>
@@ -224,6 +222,8 @@ class ConnectedTicket extends React.Component {
 
     let disableApprove=true
     let disableBuy=true
+    let pendingApprove=false
+    let pendingBuy = false
     if (address){
       disableApprove=false
     }
@@ -232,6 +232,16 @@ class ConnectedTicket extends React.Component {
         disableApprove=true
         disableBuy=false
       }
+    }
+    if (approveHash) {
+      if (approveBlockHash===undefined || approveBlockHash===null){
+      pendingApprove=true}
+      else{
+        pendingApprove=false
+      }
+    }
+    if (buyHash && (buyBlockHash===undefined || buyBlockHash===null)){
+      pendingBuy=true
     }
     const displayPrice=parseFloat(ethers.utils.formatEther(price)).toFixed(3)
 
@@ -274,12 +284,18 @@ class ConnectedTicket extends React.Component {
   <Row className="ml-0 text-white">{inStock} SMT</Row>
   </Col>
   <Col className="text-center">
-  <Button  className="px-0 py-0 " onClick={()=>{this.approve()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableApprove} ><img src={approvebtn} style={{width:"100%"}}/>
-                    </Button>
+    {pendingApprove?
+  <i className="fas fa-spinner fa-spin text-white"></i>:
+  <Button  className="px-0 py-0 " onClick={()=>{this.approve()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableApprove} >
+  <img src={approvebtn} style={{width:"100%"}}/>
+                    </Button>}
   </Col>
 <Col className="text-center">
+  {pendingBuy?  <i className="fas fa-spinner fa-spin text-white"></i>:
+
     <Button  className="px-0 py-0" onClick={()=>{this.buySMT()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableBuy}><img src={buybtn} style={{width:"100%"}}/>
-                    </Button></Col>
+                    </Button>}
+                    </Col>
 </Row>
 
 <Row style={{marginTop:"30px"}}>
