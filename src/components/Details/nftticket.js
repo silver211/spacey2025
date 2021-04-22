@@ -227,7 +227,7 @@ class ConnectedNFTTicket extends React.Component {
 
     return (
       <div className="bg-dark">
-                 <SpaceYNavbar />
+                 {/* <SpaceYNavbar /> */}
 
            <div ref="main">
 
@@ -290,7 +290,7 @@ class ConnectedNFTTicket extends React.Component {
 
 
         </div>
-        <SpaceYFooter />
+        {/* <SpaceYFooter /> */}
 
       </div>
     );

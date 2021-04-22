@@ -3,7 +3,8 @@ import {ethers} from "ethers";
 import {connect} from "react-redux"
 import {update_address,toggle_uni} from "actions/index.js"
 import {
-  
+  Container,
+  Row,
   NavItem,
   NavLink
 } from "reactstrap";
@@ -77,7 +78,8 @@ shouldComponentUpdate(nextProps,nextState){
     render(){
         const {inStock,tokenID}=this.props
 
-  return (<Link to={"/nftticket/token/"+tokenID} className="text-white">
+  return (<Link to={"/nftticket/token/"+tokenID} className="text-white ">
+    {/* <div className="position-relative"> */}
         <img
                       alt="..."
                       className="position-relative" 
@@ -85,15 +87,25 @@ shouldComponentUpdate(nextProps,nextState){
                     }
                     style={{width:"100%"}}
                     />
+                    {/* <Container className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw",width:"50%"}}>
+                      <Row>                    <p  style={{fontSize:"0.8vw"}}>Price:2025 SPAY</p>
+</Row>
+<Row>                    <p  style={{fontSize:"0.8vw"}}>TokenID:{tokenID}</p>
+</Row>
+<Row>                    <p  style={{fontSize:"0.8vw"}}>Early access to the Space Y 2025 NFT tower defense game.</p>
+</Row>
+
+                      </Container> */}
                     <p className="position-absolute" style={{top:"65%",left:"15%",fontSize:"1vw"}}>Price:2025 SPAY</p>
                     <p className="position-absolute" style={{top:"70%",left:"15%",fontSize:"1vw"}}>TokenID:{tokenID}</p>
-                    <p className="position-absolute" style={{top:"75%",left:"15%",fontSize:"1vw",width:"80%"}}>Early access to the Space Y 2025 NFT tower defense game.</p>
+                    <p className="position-absolute" style={{top:"75%",left:"15%",fontSize:"1vw",width:"80%",whiteSpace:"normal "}}>
+                    Early access to the Space Y 2025 NFT tower defense game.</p>
 
                     {/* <p className="position-absolute" style={{top:"55%",left:"15%"}}>Price:2025 SPAY</p> */}
 
 
         
-              
+              {/* </div> */}
   </Link>
 
 

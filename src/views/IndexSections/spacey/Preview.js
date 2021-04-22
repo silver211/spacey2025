@@ -124,8 +124,8 @@ class ConnectedPreview extends React.Component {
                      </p>                    
                   </Col>
                 </Row>
-        {address ?
-        <Row style={{left:"10%",top:"58%",width:"80%",overflowY:"scroll"}} className="position-absolute">
+        {/* {address ?
+        <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll"}} className="position-absolute">
           <Col style={{width:"25% !important"}}>
           <NFTTicket />
           </Col>
@@ -141,7 +141,37 @@ class ConnectedPreview extends React.Component {
           
 
           
-          </Row>:<></>}
+          </Row>:<></>} */}
+          <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll",position:"absolute"}}>
+            <li style={{ overflowX:"auto",listStyle:"none",whiteSpace:"nowrap",width: "auto" }}>
+            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item>
+
+            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item>
+            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item>
+            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item>
+            <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item><item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+              <NFTTicket />
+            </item>
+            </li>
+          </Row>
           
               
         </div>

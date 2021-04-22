@@ -85,7 +85,7 @@ class ConnectedMarket extends React.Component {
       <>
                  {/* <SpaceYNavbar /> */}
 
-           <div ref="main">
+           <div ref="main" >
 
              <Preview />
              <GetSpay/>

@@ -112,7 +112,6 @@ class ConnectedGetSpay extends React.Component {
   <p className="text-white text-center mx-auto" style={{fontSize:"1.2vw"}}><span style={{color:"#D8DF72"}}>SPAY ADDRESS:</span>0x58FaD9E3C3AE54c9BA98c3f0E4bF88aB3E8Cf3c5</p>
 </Row>
 </Container>
-
   <Button onClick={()=>toggle_uni()} className="px-0 py-0 position-absolute" style={{backgroundColor:"transparent",borderColor:"transparent",margin:"auto",top:"0.5%",width:"20%",left:"70%"}}><img src={closebtnImg} style={{width:"100%"}}/> </Button>
 
   

@@ -56,10 +56,13 @@ import {tokenHash} from "ticketInfo/hash.js"
 
 // index page sections
 
-const saleTicket=require("assets/SpaceYAssets/SpaceTicket/spaceship ticket_sale.png")
+const saleTicket=require("assets/SpaceYAssets/buyticket/purchase_background_hd.png")
 const price = ethers.BigNumber.from("2025000000000000000000")
 const approvebtn=require("assets/SpaceYAssets/btn/approvebtn.png")
 const buybtn=require("assets/SpaceYAssets/btn/buybtn.png")
+const limitTag = require("assets/SpaceYAssets/buyticket/Limited_Tag.png")
+const tokenLogo = require("assets/SpaceYAssets/Token Logo/SPAY_token_s_white_256_256.png")
+
 
 
 function mapDispatchToProps(dispatch){
@@ -207,16 +210,7 @@ class ConnectedTicket extends React.Component {
 
   
   render() {
-    // return (
-    //   <>
-    //   <SpaceYNavbar />
-    //   <main ref="main">
-    //     <Hero />
-    //             <SpaceYFooter />
-
-    //     </main>
-    //   </>
-    // )
+    
 
     const {address,allowance,inStock}=this.props
     const {approveBlockhash,buyBlockHash}=this.state
@@ -248,44 +242,54 @@ class ConnectedTicket extends React.Component {
 
            <div ref="main">
 
-           
+           <img src={saleTicket} style={{width:"100%"}} />
 
-             {/* <GetSpay/> */}
-             <Container >
+
+             <Container style={{marginTop:"10px",marginLeft:"30%",marginRight:"30%",width:"40%"}}>
              <Row >
-               
-<img src={saleTicket} style={{width:"100%"}} />
+  <Col className="text-left " >
+      <p style={{fontFamily:"Arial regular",fontSize:"1.5vw",color:"#ffffff"}}>SpaceY Boarding Pass <img src={limitTag} style={{display:"inline-block"}}/></p>
+  </Col>
+
 </Row>
-<Row >
+<Row style={{marginTop:"30px"}}>
+  <Col className="text-left"><p>DESCRIPTION</p></Col>
+  <Col></Col>
+</Row>
+<Row>
+  <Col className="text-white">This item provides you the early access to the amazing experience of SpaceY 2025 tower defense NFT game.</Col>
+  <Col></Col>
+</Row>
+             
+<Row style={{marginTop:"30px"}}>
+  <Col>
+  <Row className="ml-0">PRICE</Row>
+    <Row className="ml-0 text-white text-right" >
+      <img src={tokenLogo} style={{display:"inline-block",height:"1rem"}}/> <p className="text-right">2025.000</p>
+    </Row>
+    </Col>
+  <Col>
+  <Row className="ml-0">In Stock</Row>
+  <Row className="ml-0 text-white">{inStock} SMT</Row>
+  </Col>
   <Col className="text-center">
-  <Button  className="px-0 py-0 " onClick={()=>{this.approve()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableApprove} ><img src={approvebtn} style={{width:"60%"}}/>
+  <Button  className="px-0 py-0 " onClick={()=>{this.approve()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableApprove} ><img src={approvebtn} style={{width:"100%"}}/>
                     </Button>
   </Col>
 <Col className="text-center">
-    <Button  className="px-0 py-0" onClick={()=>{this.buySMT()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableBuy}><img src={buybtn} style={{width:"60%"}}/>
+    <Button  className="px-0 py-0" onClick={()=>{this.buySMT()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={disableBuy}><img src={buybtn} style={{width:"100%"}}/>
                     </Button></Col>
 </Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">Description</p></Col>
-<Col>
-<p className="text-center text-white">This premium ticket provides the player the early access to the amazing experience of Space Y 2025 NFT tower defense game.</p>
-</Col>
+
+<Row style={{marginTop:"30px"}}>
+  <Col className="text-left"><p>Instruction</p></Col>
+  <Col></Col>
 </Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">Price</p></Col>
-<Col>
-<p className="text-center text-white">{displayPrice} SPAY</p>
-</Col>
+<Row>
+  <Col className="text-white">Make sure you appove the transaction before buying.</Col>
+  <Col></Col>
 </Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">In Stock</p></Col>
-<Col>
-<p className="text-center text-white">{inStock} SMT</p>
-</Col>
-</Row>
+
 </Container>
 
 
