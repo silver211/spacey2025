@@ -138,9 +138,9 @@ class ConnectedTicket extends React.Component {
         newapproveBlockHash = await provider.getTransaction(approveHash).then(e=>{console.log(e);return e.blockHash})
       }
       if (buyHash){
-        newbuyBlockHash = await provider.getTransaction(buyHash).then(e=>{return e.blockHash})
+        newbuyBlockHash = await provider.getTransaction(buyHash).then(e=>{console.log(e);return e.blockHash})
       }
-              this.setState({
+          this.setState({
           ...this.state,
           approveBlockHash:approveBlockHash?approveBlockHash:newapproveBlockHash,
           buyBlockHash:buyBlockHash?buyBlockHash:newbuyBlockHash
@@ -215,7 +215,7 @@ class ConnectedTicket extends React.Component {
     const {address,allowance,inStock}=this.props
     const {approveBlockHash,buyBlockHash,approveHash,buyHash}=this.state
 
-    if (buyBlockHash!=undefined){
+    if (buyBlockHash!=undefined && buyBlockHash){
       alert("Congraluation! Trade succeed,now you have one new SMT!")
       return <Redirect to="/market"/>
         }
