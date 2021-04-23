@@ -163,7 +163,7 @@ class ConnectedSpaceYNavbar extends React.Component {
 <Nav className="align-items-lg-center" navbar>
 <NavItem>
                     <NavLink
-                      href="/"
+                      href="/#"
                     >
                       HOME
                     </NavLink>

@@ -68,6 +68,7 @@ class About extends React.Component {
         </div>
         <div className="text-center position-absolute" style={{width:"50%",left:"25%",top:"25%"}}>
         <p  className="text-white mb-0" style={{fontSize:"1vw"}}>
+        In a parallel universe as the world we live in, Space Y is the project of human Mars migration mission sponsored by Elon Musk. <br />
         In 2025, Elon Musk announced that the Big Falcon Spaceship (BFS) will send the first batch of 100
 human volunteers to Mars, and it will take about 8 months for the manned spacecraft Dragon to
 reach Mars. We call it the Project SpaceY 2025.<br /> 
