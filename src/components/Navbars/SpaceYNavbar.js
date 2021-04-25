@@ -162,34 +162,40 @@ class ConnectedSpaceYNavbar extends React.Component {
 
 <Nav className="align-items-lg-center" navbar>
 <NavItem>
+  <Link to="/">
                     <NavLink
-                      href="/#"
+                      // href="#/#"
                     >
                       HOME
                     </NavLink>
+                    </Link>
                     
                   </NavItem> 
 
 
 
                   <NavItem>
+                    <Link to="/freeticket">
                     <NavLink
-                      href="/#freeticket"  
+                      // href="/#freeticket"  
 
                     >
                           FREE TICKET
 
                     </NavLink>
+                    </Link>
                     
                   </NavItem>
                   <NavItem>
+                    <Link to="/about">
                     <NavLink
-                      href="/#about"  
+                      // href="/#about"  
 
                     >
                       ABOUT SPACEY2025
 
                     </NavLink>
+                    </Link>
                     
                   </NavItem>
 
@@ -232,13 +238,15 @@ class ConnectedSpaceYNavbar extends React.Component {
                   </NavItem> */}
 
                   <NavItem>
+                    <Link to="/market">
                     <NavLink
-                      href="/#/market#market"  
+                      // href="/#/market#market"  
 
                     >
                       MARKET
 
                     </NavLink>
+                  </Link>
                     
                   </NavItem> </>):<></>}
                   
