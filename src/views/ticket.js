@@ -249,7 +249,6 @@ class ConnectedTicket extends React.Component {
 
     return (
       <div className="bg-dark">
-                 {/* <SpaceYNavbar /> */}
 
            <div ref="main">
 
@@ -276,7 +275,9 @@ class ConnectedTicket extends React.Component {
   <Col>
   <Row className="ml-0">PRICE</Row>
     <Row className="ml-0 text-white text-right" >
-      <img src={tokenLogo} style={{display:"inline-block",height:"1rem"}}/> <p className="text-right">2025.000</p>
+       <p className="text-right">
+       <img src={tokenLogo} style={{display:"inline-block",height:"1rem",margin:"auto"}}/>
+         2025.000</p>
     </Row>
     </Col>
   <Col>
@@ -311,7 +312,6 @@ class ConnectedTicket extends React.Component {
 
 
         </div>
-        {/* <SpaceYFooter /> */}
 
       </div>
     );

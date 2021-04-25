@@ -66,7 +66,7 @@ class About extends React.Component {
           <div className="text-center position-absolute" style={{width:"40%",left:"30%",top:"10%"}}>
         <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>{largeFont("A")}BOUT {largeFont("S")}PACE{largeFont("Y")} 2025</p>
         </div>
-        <div className="text-center position-absolute" style={{width:"50%",left:"25%",top:"25%"}}>
+        <div className="text-center position-absolute" style={{width:"80%",left:"10%",top:"25%"}}>
         <p  className="text-white mb-0" style={{fontSize:"1vw"}}>
         In a parallel universe as the world we live in, Space Y is the project of human Mars migration mission sponsored by Elon Musk. <br />
         In 2025, Elon Musk announced that the Big Falcon Spaceship (BFS) will send the first batch of 100

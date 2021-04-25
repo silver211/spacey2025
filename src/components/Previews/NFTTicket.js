@@ -81,7 +81,7 @@ shouldComponentUpdate(nextProps,nextState){
         const {inStock,tokenID}=this.props
 
   return (
-  // <Link to={"/nftticket/token/"+tokenID} className="text-white ">
+  <Link to={"/nftticket/token/"+tokenID} className="text-white ">
     <div className="position-relative">
         <img
                       alt="..."
@@ -98,7 +98,7 @@ shouldComponentUpdate(nextProps,nextState){
 {"NO."+tokenID}</p>
 </div>
                     
-  // {/* </Link> */}
+   </Link>
 
 
   )}

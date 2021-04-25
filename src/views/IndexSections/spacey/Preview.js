@@ -152,7 +152,7 @@ class ConnectedPreview extends React.Component {
           
           </Row>:<></>} */}
           <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll",position:"absolute"}}>
-            <li style={{ overflowX:"auto",listStyle:"none",whiteSpace:"nowrap",width: "100%" }}>
+            <li style={{ overflowX:"scroll",listStyle:"none",whiteSpace:"nowrap",width: "100%" }}>
             
             
 

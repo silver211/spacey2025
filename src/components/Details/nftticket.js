@@ -85,11 +85,14 @@ class ConnectedNFTTicket extends React.Component {
       if (ethereum){
         
         const {update_provider,update_info} = this.props 
+        const {getOwner,getName}=this
         // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
         // update_provider()
         this.intervalProvider=setInterval(update_provider,5000)
         this.intervalInfo=setInterval(update_info,5000)
-        this.intervals=[this.intervalInfo,this.intervalProvider]
+        this.intervalOwner=setInterval(getOwner,5000)
+        this.intervalName=setInterval(getName,5000)
+        this.intervals=[this.intervalInfo,this.intervalProvider,this.intervalName,this.intervalOwner]
       }
   }
 
@@ -201,8 +204,8 @@ class ConnectedNFTTicket extends React.Component {
 
   
   render() {
-    const width=1016
-    const height=421
+    const width=1255
+    const height=734
     
 
     const {address,allowance,inStock,smtInst}=this.props
@@ -212,12 +215,11 @@ class ConnectedNFTTicket extends React.Component {
     // if (tokenID>100-inStock || tokenID<=0 || isNaN(tokenID)){
     //   return <Redirect to="/market" />
     // }
-    const isOwner=address && owner && owner==address
+    const isOwner=address && owner && owner.toLowerCase() ==address.toLowerCase()
     const imgsrc= "https://gateway.pinata.cloud/ipfs/"+tokenHash[tokenID]
-    getOwner()
-    getName()
+    // getOwner()
+    // getName()
 
-    // console.log(name)
 
 
 
@@ -233,14 +235,11 @@ class ConnectedNFTTicket extends React.Component {
 
            
 
-             {/* <GetSpay/> */}
              <TransferModal 
              isopen={isopen}
              toggleModal={toggleModal}
              />
-             <Container >
-             <Row >
-               {name?<>
+             {name?<>
              <Canvas save={saveImgurl} 
   width={width} 
   height={height} 
@@ -255,36 +254,37 @@ class ConnectedNFTTicket extends React.Component {
 :<img src={imgsrc} style={{width:"100%"}} />
 
 }
+<Container style={{marginTop:"10px",marginLeft:"30%",marginRight:"30%",width:"40%"}}>
+             <Row >
+  <Col className="text-left " >
+      <p style={{fontFamily:"Arial regular",fontSize:"1.5vw",color:"#ffffff"}}>SpaceY Boarding Pass {tokenID}</p>
+  </Col>
+
 </Row>
-<Row >
+<Row style={{marginTop:"30px"}}>
+  <Col className="text-left"><p>Owner</p></Col>
+  <Col></Col>
+</Row>
+<Row>
+  <Col className="text-white">{owner}</Col>
+  <Col></Col>
+</Row>
+             
+<Row style={{marginTop:"30px"}}>
+  
+  
   <Col className="text-center">
-  <Button  className="px-0 py-0 " onClick={()=>{this.toggleModal()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={false} ><img src={transferbtn} style={{width:"60%"}}/>
+    
+  <Button  className="px-0 py-0 " onClick={()=>{this.toggleModal()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={false} >
+  <img src={transferbtn} style={{width:"100%"}}/>
                     </Button>
   </Col>
 <Col className="text-center">
-    <Button  className="px-0 py-0" onClick={()=>{this.buySMT()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={false}><img src={renamebtn} style={{width:"60%"}}/>
-                    </Button></Col>
-</Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">Description</p></Col>
-<Col>
-<p className="text-center text-white">This premium ticket provides the player the early access to the amazing experience of Space Y 2025 NFT tower defense game.</p>
-</Col>
-</Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">Owner</p></Col>
-<Col>
-<p className="text-center text-white">{owner?owner:""}</p>
-</Col>
-</Row>
-<Row >
-<Col>
-<p className="h3 text-center text-white">Token ID</p></Col>
-<Col>
-<p className="text-center text-white">{tokenID}</p>
-</Col>
+
+    <Button  className="px-0 py-0" onClick={()=>{this.toggleModal()}} style={{backgroundColor:"transparent",borderColor:"transparent"}} disabled={false}>
+      <img src={renamebtn} style={{width:"100%"}}/>
+                    </Button>
+                    </Col>
 </Row>
 </Container>
 
