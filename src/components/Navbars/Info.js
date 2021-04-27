@@ -8,6 +8,7 @@ import {
   NavLink
 } from "reactstrap";
 import { Redirect } from 'react-router';
+import { Link } from "react-router-dom";
 
 
 
@@ -99,14 +100,16 @@ shouldComponentUpdate(nextProps,nextState){
                     </NavLink>
                     
                   </NavItem>
+                  <Link to="/market">
+
     <NavItem>
     <NavLink
-      href="#/market#mynft"
+      href="#/market"
 
     > {displayAddress}
     </NavLink>
     
-  </NavItem></>
+  </NavItem></Link> </>
 
 
   )}

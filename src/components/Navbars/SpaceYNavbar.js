@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // JavaScript plugin that hides or shows a component based on your scroll
@@ -161,62 +145,39 @@ class ConnectedSpaceYNavbar extends React.Component {
                 
 
 <Nav className="align-items-lg-center" navbar>
-<NavItem>
-  <Link to="/">
-                    <NavLink
-                      // href="#/#"
-                    >
-                      HOME
-                    </NavLink>
-                    </Link>
-                    
-                  </NavItem> 
 
 
 
+                  <Link to="/#freeticket" key="freeticket" >
                   <NavItem>
-                    <Link to="/freeticket">
                     <NavLink
-                      // href="/#freeticket"  
-
+                      // href="/#freeticket"
                     >
                           FREE TICKET
 
                     </NavLink>
-                    </Link>
                     
                   </NavItem>
+                  </Link>
+                <Link to="/#about" key="about">
                   <NavItem>
-                    <Link to="/about">
                     <NavLink
-                      // href="/#about"  
+                      href="/#about"
 
                     >
                       ABOUT SPACEY2025
 
                     </NavLink>
-                    </Link>
                     
                   </NavItem>
-
-                  {/* <NavItem>
-                    <NavLink
-                      href="https://discord.com/invite/cUeNS8UzGW"  
-
-                    >
-                      JOIN DISCORD
-
-                    </NavLink>
-                    
-                  </NavItem> */}
+                  </Link>
 
                   {vw>=1024?
                   (<>
-                  {/* <NavItem onClick={() => this.toggleModal("uniModal")} > */}
+                  
                   <NavItem onClick={() => this.props.toggle_uni()} >
 
                     <NavLink
-                      // href="/#"    
 
                     >
                       GET SPAY
@@ -224,31 +185,17 @@ class ConnectedSpaceYNavbar extends React.Component {
                     </NavLink>
                     
                   </NavItem>
-                  {/* <NavItem onClick={() => this.toggleModal("ticketModal")}> */}
-                  {/* <NavItem onClick={() => this.props.toggle_ea()}>
-
-                    <NavLink
-                      // href="/#"  
-
-                    >
-                      EARLY ACCESS
-
-                    </NavLink>
-                    
-                  </NavItem> */}
-
+                  
+                  <Link to="/market">
                   <NavItem>
-                    <Link to="/market">
                     <NavLink
-                      // href="/#/market#market"  
-
+                      href="/market"
                     >
                       MARKET
 
                     </NavLink>
-                  </Link>
                     
-                  </NavItem> </>):<></>}
+                  </NavItem></Link> </>):<></>}
                   
                   
                 </Nav>
@@ -258,16 +205,6 @@ class ConnectedSpaceYNavbar extends React.Component {
 
                 {vw>=1024?
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                {/* <NavItem>
-                    <NavLink
-                      href="#/mytickets"  
-
-                    >
-                        MY NFT
-                    </NavLink>
-                    
-                  </NavItem> */}
-
                   <SignIn
                   />
                 </Nav>:<></>}
@@ -276,7 +213,6 @@ class ConnectedSpaceYNavbar extends React.Component {
           </Navbar>
           
 
-        {/* </header> */}
       </>
     );
   }

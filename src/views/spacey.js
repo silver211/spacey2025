@@ -1,23 +1,8 @@
-/*!
 
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import {connect} from "react-redux"
 import {update_provider,update_info} from "actions/index.js"
+import ReactDOM from 'react-dom';
 
 
 
@@ -61,6 +46,19 @@ class ConnectedSpaceY extends React.Component {
     document.scrollingElement.scrollTop = 0;
     this.refs.main.scrollTop = 0;
 
+    const anchor = this.props.location.hash.replace('#', '');
+  
+    if (anchor) {
+      const domElement = ReactDOM.findDOMNode(this.refs[anchor]);
+      if (domElement) {
+        domElement.scrollIntoView();
+      }
+    }
+
+
+
+
+
     const {ethereum} = window
       if (ethereum){
         
@@ -81,7 +79,9 @@ class ConnectedSpaceY extends React.Component {
     }
   }
 
-
+  componentDidUpdate() {
+    
+  }
 
   
   render() {
@@ -103,8 +103,8 @@ class ConnectedSpaceY extends React.Component {
            <div ref="main">
 
              <Hero />
-            <FreeTicket />        
-            <About />
+            <FreeTicket ref="freeticket"/>        
+            <About ref="about"/>
             <Partner/>
 
             {/* <GetSpay/> */}

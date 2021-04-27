@@ -129,21 +129,21 @@ class ConnectedTicket extends React.Component {
   }
   
   async checkTransaction(){
-    const {approveHash,buyHash,approveBlockHash,buyBlockHash} = this.state
+    const {approveHash,buyHash,approveBlockStatus,buyBlockStatus} = this.state
     const {provider} = this.props
-    let newapproveBlockHash=undefined
-    let newbuyBlockHash=undefined
+    let newapproveBlockStatus=undefined
+    let newbuyBlockStatus=undefined
     if (provider){
         if (approveHash ){
-        newapproveBlockHash = await provider.getTransaction(approveHash).then(e=>{console.log(e);return e.blockHash})
+        newapproveBlockStatus = await provider.getTransactionReceipt(approveHash).then(e=>{console.log(e);return e==null?undefined:e.status})
       }
       if (buyHash){
-        newbuyBlockHash = await provider.getTransaction(buyHash).then(e=>{console.log(e);return e.blockHash})
+        newbuyBlockStatus = await provider.getTransactionReceipt(buyHash).then(e=>{console.log(e);return e==null?undefined: e.status})
       }
           this.setState({
           ...this.state,
-          approveBlockHash:approveBlockHash?approveBlockHash:newapproveBlockHash,
-          buyBlockHash:buyBlockHash?buyBlockHash:newbuyBlockHash
+          approveBlockStatus:approveBlockStatus?approveBlockStatus:newapproveBlockStatus,
+          buyBlockStatus:buyBlockStatus?buyBlockStatus:newbuyBlockStatus
         })
       }
       
@@ -213,11 +213,15 @@ class ConnectedTicket extends React.Component {
     
 
     const {address,allowance,inStock}=this.props
-    const {approveBlockHash,buyBlockHash,approveHash,buyHash}=this.state
+    const {approveBlockStatus,buyBlockStatus,approveHash,buyHash}=this.state
 
-    if (buyBlockHash!=undefined && buyBlockHash){
+    if ( buyHash){
+      if (buyBlockStatus==1){
       alert("Congraluation! Trade succeed,now you have one new SMT!")
-      return <Redirect to="/market"/>
+      return <Redirect to="/market"/>}
+      else if (buyBlockStatus==0){
+        alert("Sorry,SMT purchase failed.Please try later")
+      }
         }
 
     let disableApprove=true
@@ -234,13 +238,13 @@ class ConnectedTicket extends React.Component {
       }
     }
     if (approveHash) {
-      if (approveBlockHash===undefined || approveBlockHash===null){
+      if (approveBlockStatus===undefined || approveBlockStatus===null){
       pendingApprove=true}
       else{
         pendingApprove=false
       }
     }
-    if (buyHash && (buyBlockHash===undefined || buyBlockHash===null)){
+    if (buyHash && (buyBlockStatus===undefined || buyBlockStatus===null)){
       pendingBuy=true
     }
     const displayPrice=parseFloat(ethers.utils.formatEther(price)).toFixed(3)
@@ -262,15 +266,7 @@ class ConnectedTicket extends React.Component {
   </Col>
 
 </Row>
-<Row style={{marginTop:"30px"}}>
-  <Col className="text-left"><p>DESCRIPTION</p></Col>
-  <Col></Col>
-</Row>
-<Row>
-  <Col className="text-white">This item provides you the early access to the amazing experience of SpaceY 2025 tower defense NFT game.</Col>
-  <Col></Col>
-</Row>
-             
+
 <Row style={{marginTop:"30px"}}>
   <Col>
   <Row className="ml-0">PRICE</Row>
@@ -298,6 +294,19 @@ class ConnectedTicket extends React.Component {
                     </Button>}
                     </Col>
 </Row>
+
+
+
+<Row style={{marginTop:"30px"}}>
+  <Col className="text-left"><p>DESCRIPTION</p></Col>
+  <Col></Col>
+</Row>
+<Row>
+  <Col className="text-white">This item provides you the early access to the amazing experience of SpaceY 2025 tower defense NFT game.</Col>
+  <Col></Col>
+</Row>
+             
+
 
 <Row style={{marginTop:"30px"}}>
   <Col className="text-left"><p>Instruction</p></Col>

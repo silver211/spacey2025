@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -39,8 +23,8 @@ import SpaceYFooter from "components/Footers/SpaceYFooter.js"
 import GetSpay from "views/IndexSections/spacey/GetSpay.js"
 
 ReactDOM.render(
-  <Provider store={store}>
-  <HashRouter>
+  <Provider store={store} className="bg-dark">
+  <BrowserRouter>
     <SpaceYNavbar />
     <Switch>
       {/* <Route path="/index"  render={props => <SpaceY {...props} />} />
@@ -98,7 +82,7 @@ ReactDOM.render(
     <GetSpay/>
 
     <SpaceYFooter />
-  </HashRouter>
+  </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
