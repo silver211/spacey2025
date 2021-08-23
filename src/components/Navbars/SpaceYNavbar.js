@@ -186,16 +186,20 @@ class ConnectedSpaceYNavbar extends React.Component {
                     
                   </NavItem>
                   
-                  <Link to="/market">
+                   </>):<></>}
+                   {/* <Link to="https://market.spacey2025.com"> */}
                   <NavItem>
                     <NavLink
-                      href="/market"
+                      // href="https://testmarket.spacey2025.com"
+                      href="https://market.spacey2025.com"
+
                     >
                       MARKET
 
                     </NavLink>
                     
-                  </NavItem></Link> </>):<></>}
+                  </NavItem>
+                  {/* </Link> */}
                   
                   
                 </Nav>

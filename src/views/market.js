@@ -12,6 +12,7 @@ import GetSpay from "views/IndexSections/spacey/GetSpay"
 // index page sections
 
 import Preview from "views/IndexSections/spacey/Preview.js"
+import Hero from "views/IndexSections/market/Hero.js"
 function mapDispatchToProps(dispatch){
   return {
     update_provider:()=>dispatch(update_provider()),
@@ -69,19 +70,16 @@ class ConnectedMarket extends React.Component {
   
     return (
       <>
-                 {/* <SpaceYNavbar /> */}
 
            <div ref="main" >
-
+            {/* <Hero /> */}
              <Preview />
-             {/* <GetSpay/> */}
 
 
 
 
 
         </div>
-        {/* <SpaceYFooter /> */}
 
       </>
     );

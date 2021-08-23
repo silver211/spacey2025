@@ -3,6 +3,8 @@ import React from "react";
 import {connect} from "react-redux"
 import {update_provider,update_info} from "actions/index.js"
 import ReactDOM from 'react-dom';
+import { isMobile } from 'decentraland-dapps/dist/lib/utils'
+
 
 
 
@@ -11,9 +13,12 @@ import SpaceYFooter from "components/Footers/SpaceYFooter.js";
 
 // index page sections
 import Hero from "./IndexSections/spacey/Hero.js";
+// import Hero from "components/Hero"
 import FreeTicket from "./IndexSections/spacey/FreeTicket.js";
 import About from "./IndexSections/spacey/About.js"
 import Partner from "./IndexSections/spacey/Partner.js"
+import Homepage from "../components/HomePage"
+
 
 import GetSpay from "./IndexSections/spacey/GetSpay.js"
 import TicketModals from "./IndexSections/spacey/TicketModals.js"
@@ -59,24 +64,24 @@ class ConnectedSpaceY extends React.Component {
 
 
 
-    const {ethereum} = window
-      if (ethereum){
+    // const {ethereum} = window
+    //   if (ethereum){
         
-        const {update_provider,update_info} = this.props 
-        // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
-        // update_provider()
-        this.intervalProvider=setInterval(update_provider,5000)
-        this.intervalInfo=setInterval(update_info,5000)
-        this.intervals=[this.intervalInfo,this.intervalProvider]
-      }
+    //     const {update_provider,update_info} = this.props 
+    //     // this.intervals=[setInterval(update_provider,5000),setInterval(update_info,5000)]
+    //     // update_provider()
+    //     this.intervalProvider=setInterval(update_provider,5000)
+    //     this.intervalInfo=setInterval(update_info,5000)
+    //     this.intervals=[this.intervalInfo,this.intervalProvider]
+    //   }
   }
 
   componentWillUnmount(){
-    if(this.intervals){
-      for( const interval of this.intervals){
-        clearInterval(interval)
-      }
-    }
+    // if(this.intervals){
+    //   for( const interval of this.intervals){
+    //     clearInterval(interval)
+    //   }
+    // }
   }
 
   componentDidUpdate() {
@@ -85,16 +90,7 @@ class ConnectedSpaceY extends React.Component {
 
   
   render() {
-    // return (
-    //   <>
-    //   <SpaceYNavbar />
-    //   <main ref="main">
-    //     <Hero />
-    //             <SpaceYFooter />
-
-    //     </main>
-    //   </>
-    // )
+    
 
     return (
       <>
@@ -102,7 +98,7 @@ class ConnectedSpaceY extends React.Component {
 
            <div ref="main">
 
-             <Hero />
+           <Hero />
             <FreeTicket ref="freeticket"/>        
             <About ref="about"/>
             <Partner/>

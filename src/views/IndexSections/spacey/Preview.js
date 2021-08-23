@@ -88,10 +88,11 @@ class ConnectedPreview extends React.Component {
       let assets=[]
       for (const token of tokens){
         assets.push(
-          <item style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
+          <div style={{marginLeft:"20px",display:"inline-block",width:"20%",position:"relative"}}>
 <NFTTicket tokenID={token}/>
 
-        </item>)
+        </div>)
+        
       }
       return (<>
         <div className="position-relative" >
@@ -133,26 +134,9 @@ class ConnectedPreview extends React.Component {
                      </p>                    
                   </Col>
                 </Row>
-        {/* {address ?
-        <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll"}} className="position-absolute">
-          <Col style={{width:"25% !important"}}>
-          <NFTTicket />
-          </Col>
-          <Col style={{width:"25% !important"}}>
-          <NFTTicket />
-          </Col>
-          <Col style={{width:"25% !important"}}>
-          <NFTTicket />
-          </Col>
-          <Col style={{width:"25% !important"}}>
-          <NFTTicket />
-          </Col>
-          
-
-          
-          </Row>:<></>} */}
+        
           <Row style={{left:"10%",top:"58%",width:"80%",overflowX:"scroll",position:"absolute"}}>
-            <li style={{ overflowX:"scroll",listStyle:"none",whiteSpace:"nowrap",width: "100%" }}>
+            <div style={{ overflowX:"scroll",listStyle:"none",whiteSpace:"nowrap",width: "100%" }}>
             
             
 
@@ -160,7 +144,7 @@ class ConnectedPreview extends React.Component {
 
 
             {assets}
-            </li>
+            </div>
           </Row>
           
               

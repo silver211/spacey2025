@@ -1,0 +1,17 @@
+.legal.terms .container {
+    max-width: none;
+    padding: 40px 0;
+}
+body {
+    color: aliceblue !important;
+}
+h1,h2,h3,p {
+    color:#ffffff;
+}
+
+.privacy.container a {
+    color: #00b6ff;
+}
+.privacy.container a:hover{
+    color:#00b6ff
+}

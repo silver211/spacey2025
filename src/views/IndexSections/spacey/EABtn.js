@@ -39,10 +39,10 @@ class ConnectedEABtn extends React.Component{
 
 
     render(){
-        return (<Link to="/market">
+        return (<a href="https://game.spacey2025.com">
             <Button  className="px-0 py-0 " style={{backgroundColor:"transparent",borderColor:"transparent",height:"50%",margin:"auto",top:"25%",width:"100%",alignItems:"center"}}><img src={url} style={{height:"100%"}}/>
             </Button>   
-                      </Link>
+                      </a>
         )
     }
 }

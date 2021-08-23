@@ -68,35 +68,30 @@ class About extends React.Component {
         </div>
         <div className="text-center position-absolute" style={{width:"80%",left:"10%",top:"25%"}}>
         <p  className="text-white mb-0" style={{fontSize:"1vw"}}>
-        In a parallel universe as the world we live in, Space Y is the project of human Mars migration mission sponsored by Elon Musk. <br />
-        In 2025, Elon Musk announced that the Big Falcon Spaceship (BFS) will send the first batch of 100
-human volunteers to Mars, and it will take about 8 months for the manned spacecraft Dragon to
-reach Mars. We call it the Project SpaceY 2025.<br /> 
-Among the 100 pioneering volunteers, there are experts and elites from various industries. After
-landing on Mars, we need to search for airdropped materials to build the first Mars base. At that
-moment, human kind has officially begun to become a multi-planet species. In this cold, desolate,
-no-air, red rock planet, your only goal is to keep living...
+        In a universe parallel to our own, Space Y is the name of the project to colonize and settle Mars, which is sponsored by Elon Musk.<br />
+        In 2025, Elon Y announced that the Great Falcon Spaceship (GFS) will send the first 100 humans to Mars, which will take the Dragon 8 months to cross. This project has been dubbed Project Space Y 2025.
+Among the 100 brave pioneers, experts from numerous industries populate a large majority of the 100, humanity’s best effort to ensure the project’s success. After landing, we need to find space-dropped materials to build the first Mars settlement. This is the moment humanity evolves to a plant-faring civilization. On this cold and hostile red rock, your only goal is to survive…
 
         </p>
         </div>
         <div className="text-center position-absolute" style={{width:"15%",left:"15%",top:"71%"}}>
         <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>BUILD</p>
-        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>THE MARS BASE</p>
+        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>YOUR MARS BASE</p>
         </div>
 
         <div className="text-center position-absolute" style={{width:"15%",left:"33%",top:"71%"}}>
         <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>FIGHT</p>
-        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>THE ALIEN INTRUDERS  </p>
+        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>ALIEN INVADERS  </p>
         </div>
 
         <div className="text-center position-absolute" style={{width:"15%",left:"52%",top:"71%"}}>
         <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>UPGRADE</p>
-        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>THE DEFEND TOWER</p>
+        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>THE DEFENSE TOWERS</p>
         </div>
 
         <div className="text-center position-absolute" style={{width:"15%",left:"70%",top:"71%"}}>
         <p  className="text-white mb-0" style={{fontFamily:"BankGothic",fontSize:"2vw"}}>TRADE</p>
-        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>ALL YOUR ASSETS</p>
+        <p  className="text-white mb-0 mx-auto" style={{fontFamily:"BankGothic",fontSize:"1vw"}}>WITH OTHERS</p>
         </div>
         
 

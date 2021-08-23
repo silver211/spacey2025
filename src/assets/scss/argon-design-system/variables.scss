@@ -87,6 +87,9 @@ $youtube:       #cd201f !default;
 $slack:         #3aaf85 !default;
 $dribbble:      #ea4c89 !default;
 $github:        #222222 !default;
+$discord:       #7289d9 !default;
+$medium:        #00ab6c !default;
+$wechat:        #9de60b !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((
@@ -113,7 +116,10 @@ $brand-colors: map-merge((
   "youtube":      $youtube,
   "slack":        $slack,
   "dribbble":     $dribbble,
-  "github":       $github
+  "github":       $github,
+  "discord":      $discord,
+  "medium":       $medium,
+  "wechat":       $wechat
 ), $brand-colors);
 
 $shape-colors: () !default;

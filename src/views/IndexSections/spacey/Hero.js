@@ -45,7 +45,7 @@ class Hero extends React.Component {
                   <Col className="text-center " lg="12"  >
                     
                     <p  style={{color:"#B5E6F1",fontFamily:"BankGothic",fontSize:"3vw"}} >
-                      COLONY MARS WITH THE POWER OF BLOCKCHAIN
+                    COLONIZE MARS WITH THE POWER OF BLOCKCHAIN
                      </p>                    
                   </Col>
                 </Row>
@@ -56,7 +56,7 @@ class Hero extends React.Component {
                   <Col className="text-center " lg="12"  >
                     
                     <p  className="h3" style={{color:"#B5E6F1",fontFamily:"BankGothic",fontSize:"2vw"}} >
-                      PURCHASE YOUR ERC721 SPACEY TICKET <br /> GET EARLY ACCESS TO THE GRAND EXPLOREING ON MARS
+                      PURCHASE YOUR ERC721 SPACEY TICKET <br /> GET EARLY ACCESS TO THE GRAND EXPLORATION OF MARS
                      </p>                    
                   </Col>
                 </Row>

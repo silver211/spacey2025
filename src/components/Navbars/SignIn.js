@@ -86,12 +86,15 @@ shouldComponentUpdate(nextProps,nextState){
     address?<Info />
                 :<NavItem>
                 <NavLink
-                  onClick={handleClick}  
+                  // href="http://testgame.spacey2025.com"
+                  href="https://game.spacey2025.com"
+
+
                   // href="/#"
 
                 >
                   {/* {address?"MY NFT":"SIGN IN"} */}
-                  SIGN IN
+                  GET STARTED
                 </NavLink>
                 
               </NavItem>
